@@ -368,7 +368,11 @@ class DPOTrainer(BaseTrainer):
 
         if ref_model:
             self.ref_model = ref_model
-        elif self.is_peft_model or args.precompute_ref_log_probs:
+        elif args.precompute_ref_log_probs:
+            # If precompute_ref_log_probs, create a temporary reference model for log prob computation.
+            # After precomputation, the reference model will be discarded.
+            self.ref_model = create_reference_model(model)
+        elif self.is_peft_model:
             # The `model` with adapters turned off will be used as the reference model
             self.ref_model = None
         else:
@@ -549,6 +553,77 @@ class DPOTrainer(BaseTrainer):
 
         if "bco_pair" in self.loss_type:
             self.running = RunningMoments(self.accelerator)
+
+        # Precompute reference log probabilities if needed
+        if self.precompute_ref_log_probs:
+            batch_size = self.args.precompute_ref_batch_size or self.args.per_device_train_batch_size
+            dataloader_params = {
+                "batch_size": batch_size,
+                "collate_fn": self.data_collator,
+                "num_workers": self.args.dataloader_num_workers,
+                "pin_memory": self.args.dataloader_pin_memory,
+                "shuffle": False,
+            }
+
+            # prepare train dataloader
+            data_loader = self.accelerator.prepare(DataLoader(self.train_dataset, **dataloader_params))
+
+            ref_chosen_logps = []
+            ref_rejected_logps = []
+            for padded_batch in tqdm(iterable=data_loader, desc="Train dataset reference log probs"):
+                ref_chosen_logp, ref_rejected_logp = self.compute_ref_log_probs(padded_batch)
+                ref_chosen_logp, ref_rejected_logp = self.accelerator.gather_for_metrics(
+                    (ref_chosen_logp, ref_rejected_logp)
+                )
+                ref_chosen_logps.append(ref_chosen_logp.cpu())
+                ref_rejected_logps.append(ref_rejected_logp.cpu())
+
+                # Unnecessary cache clearing to avoid OOM
+                empty_cache()
+                self.accelerator.free_memory()
+
+            all_ref_chosen_logps = torch.cat(ref_chosen_logps).float().numpy()
+            all_ref_rejected_logps = torch.cat(ref_rejected_logps).float().numpy()
+
+            self.train_dataset = self.train_dataset.add_column(name="ref_chosen_logps", column=all_ref_chosen_logps)
+            self.train_dataset = self.train_dataset.add_column(
+                name="ref_rejected_logps", column=all_ref_rejected_logps
+            )
+            self._precomputed_train_ref_log_probs = True
+
+            # prepare test dataloader
+            data_loader = self.accelerator.prepare(DataLoader(eval_dataset, **dataloader_params))
+
+            ref_chosen_logps = []
+            ref_rejected_logps = []
+            for padded_batch in tqdm(iterable=data_loader, desc="Eval dataset reference log probs"):
+                ref_chosen_logp, ref_rejected_logp = self.compute_ref_log_probs(padded_batch)
+                ref_chosen_logp, ref_rejected_logp = self.accelerator.gather_for_metrics(
+                    (ref_chosen_logp, ref_rejected_logp)
+                )
+                ref_chosen_logps.append(ref_chosen_logp.cpu())
+                ref_rejected_logps.append(ref_rejected_logp.cpu())
+
+            all_ref_chosen_logps = torch.cat(ref_chosen_logps).float().numpy()
+            all_ref_rejected_logps = torch.cat(ref_rejected_logps).float().numpy()
+
+            eval_dataset = eval_dataset.add_column(name="ref_chosen_logps", column=all_ref_chosen_logps)
+            eval_dataset = eval_dataset.add_column(name="ref_rejected_logps", column=all_ref_rejected_logps)
+
+            # Save calculated ref_chosen_logps and ref_rejected_logps to the eval_dataset for subsequent runs
+            if self.eval_dataset is not None:
+                self.eval_dataset = eval_dataset
+            self._precomputed_eval_ref_log_probs = True
+
+            # Release the reference model
+            base = self.accelerator.unwrap_model(self.ref_model)
+            # Drop references
+            self.ref_model = None
+            del base
+            # Free GPU memory
+            empty_cache()
+            self.accelerator.free_memory()
+
 
     def _prepare_peft_model(
         self, model: PreTrainedModel, ref_model: PreTrainedModel, peft_config: Any, args: DPOConfig
@@ -804,113 +879,6 @@ class DPOTrainer(BaseTrainer):
                 "ref_chosen_logps",
                 "ref_rejected_logps",
             ]
-
-    def get_train_dataloader(self) -> DataLoader:
-        """
-        Returns the training [`~torch.utils.data.DataLoader`].
-
-        Subclass of transformers.src.transformers.trainer.get_train_dataloader to precompute `ref_log_probs`.
-        """
-
-        # Compute ref log probs only when self.model is warpped.
-        # When Transformers.Trainer first calls get_train_dataloader, the model hasn't been prepared by accelerate
-        # So do not calculate ref log probs at that time.
-        # We have modified the Trainer to call get_train_dataloader again after prepare_model
-        # And we compute ref log probs at that time.
-        if next(self.model.parameters()).is_cuda \
-            and self.precompute_ref_log_probs \
-            and not self._precomputed_train_ref_log_probs:
-            batch_size = self.args.precompute_ref_batch_size or self.args.per_device_train_batch_size
-            dataloader_params = {
-                "batch_size": batch_size,
-                "collate_fn": self.data_collator,
-                "num_workers": self.args.dataloader_num_workers,
-                "pin_memory": self.args.dataloader_pin_memory,
-                "shuffle": False,
-            }
-
-            # prepare dataloader
-            data_loader = self.accelerator.prepare(DataLoader(self.train_dataset, **dataloader_params))
-
-            ref_chosen_logps = []
-            ref_rejected_logps = []
-            for padded_batch in tqdm(iterable=data_loader, desc="Train dataset reference log probs"):
-                ref_chosen_logp, ref_rejected_logp = self.compute_ref_log_probs(padded_batch)
-                ref_chosen_logp, ref_rejected_logp = self.accelerator.gather_for_metrics(
-                    (ref_chosen_logp, ref_rejected_logp)
-                )
-                ref_chosen_logps.append(ref_chosen_logp.cpu())
-                ref_rejected_logps.append(ref_rejected_logp.cpu())
-
-                # Unnecessary cache clearing to avoid OOM
-                empty_cache()
-                self.accelerator.free_memory()
-
-            all_ref_chosen_logps = torch.cat(ref_chosen_logps).float().numpy()
-            all_ref_rejected_logps = torch.cat(ref_rejected_logps).float().numpy()
-
-            self.train_dataset = self.train_dataset.add_column(name="ref_chosen_logps", column=all_ref_chosen_logps)
-            self.train_dataset = self.train_dataset.add_column(
-                name="ref_rejected_logps", column=all_ref_rejected_logps
-            )
-
-            self._precomputed_train_ref_log_probs = True
-
-        return super().get_train_dataloader()
-
-    def get_eval_dataloader(self, eval_dataset: Dataset | None = None) -> DataLoader:
-        """
-        Returns the evaluation [`~torch.utils.data.DataLoader`].
-
-        Subclass of transformers.src.transformers.trainer.get_eval_dataloader to precompute `ref_log_probs`.
-
-        Args:
-            eval_dataset (`torch.utils.data.Dataset`, *optional*):
-                If provided, will override `self.eval_dataset`. If it is a [`~datasets.Dataset`], columns not accepted
-                by the `model.forward()` method are automatically removed. It must implement `__len__`.
-        """
-        if eval_dataset is None and self.eval_dataset is None:
-            raise ValueError("Trainer: evaluation requires an eval_dataset.")
-        eval_dataset = eval_dataset if eval_dataset is not None else self.eval_dataset
-
-        # compute ref log probs only when self.model is warpped.
-        if next(self.model.parameters()).is_cuda \
-            and self.precompute_ref_log_probs \
-            and not self._precomputed_eval_ref_log_probs:
-            batch_size = self.args.precompute_ref_batch_size or self.args.per_device_eval_batch_size
-            dataloader_params = {
-                "batch_size": batch_size,
-                "collate_fn": self.data_collator,
-                "num_workers": self.args.dataloader_num_workers,
-                "pin_memory": self.args.dataloader_pin_memory,
-                "shuffle": False,
-            }
-
-            # prepare dataloader
-            data_loader = self.accelerator.prepare(DataLoader(eval_dataset, **dataloader_params))
-
-            ref_chosen_logps = []
-            ref_rejected_logps = []
-            for padded_batch in tqdm(iterable=data_loader, desc="Eval dataset reference log probs"):
-                ref_chosen_logp, ref_rejected_logp = self.compute_ref_log_probs(padded_batch)
-                ref_chosen_logp, ref_rejected_logp = self.accelerator.gather_for_metrics(
-                    (ref_chosen_logp, ref_rejected_logp)
-                )
-                ref_chosen_logps.append(ref_chosen_logp.cpu())
-                ref_rejected_logps.append(ref_rejected_logp.cpu())
-
-            all_ref_chosen_logps = torch.cat(ref_chosen_logps).float().numpy()
-            all_ref_rejected_logps = torch.cat(ref_rejected_logps).float().numpy()
-
-            eval_dataset = eval_dataset.add_column(name="ref_chosen_logps", column=all_ref_chosen_logps)
-            eval_dataset = eval_dataset.add_column(name="ref_rejected_logps", column=all_ref_rejected_logps)
-
-            # Save calculated ref_chosen_logps and ref_rejected_logps to the eval_dataset for subsequent runs
-            if self.eval_dataset is not None:
-                self.eval_dataset = eval_dataset
-            self._precomputed_eval_ref_log_probs = True
-
-        return super().get_eval_dataloader(eval_dataset=eval_dataset)
 
     @contextmanager
     def null_ref_context(self):
