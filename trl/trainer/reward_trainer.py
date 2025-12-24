@@ -159,13 +159,13 @@ class DataCollatorForPreference(DataCollatorMixin):
         output["input_ids"] = pad(
             input_ids,
             padding_value=self.pad_token_id,
-            padding_side="right",
+            padding_side="left",
             pad_to_multiple_of=self.pad_to_multiple_of,
         )
         output["attention_mask"] = pad(
             attention_mask,
             padding_value=0,
-            padding_side="right",
+            padding_side="left",
             pad_to_multiple_of=self.pad_to_multiple_of,
         )
         if "margin" in examples[0]:
@@ -302,7 +302,8 @@ class RewardTrainer(BaseTrainer):
         # Processing class
         if processing_class is None:
             processing_class = AutoTokenizer.from_pretrained(get_config_model_id(model.config))
-
+        processing_class.padding_side = 'left'
+        
         # Handle pad token for processors or tokenizers
         if args.eos_token is not None:
             eos_token = args.eos_token

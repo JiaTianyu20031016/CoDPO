@@ -812,7 +812,14 @@ class DPOTrainer(BaseTrainer):
         Subclass of transformers.src.transformers.trainer.get_train_dataloader to precompute `ref_log_probs`.
         """
 
-        if self.precompute_ref_log_probs and not self._precomputed_train_ref_log_probs:
+        # Compute ref log probs only when self.model is warpped.
+        # When Transformers.Trainer first calls get_train_dataloader, the model hasn't been prepared by accelerate
+        # So do not calculate ref log probs at that time.
+        # We have modified the Trainer to call get_train_dataloader again after prepare_model
+        # And we compute ref log probs at that time.
+        if next(self.model.parameters()).is_cuda \
+            and self.precompute_ref_log_probs \
+            and not self._precomputed_train_ref_log_probs:
             batch_size = self.args.precompute_ref_batch_size or self.args.per_device_train_batch_size
             dataloader_params = {
                 "batch_size": batch_size,
@@ -866,7 +873,10 @@ class DPOTrainer(BaseTrainer):
             raise ValueError("Trainer: evaluation requires an eval_dataset.")
         eval_dataset = eval_dataset if eval_dataset is not None else self.eval_dataset
 
-        if self.precompute_ref_log_probs and not self._precomputed_eval_ref_log_probs:
+        # compute ref log probs only when self.model is warpped.
+        if next(self.model.parameters()).is_cuda \
+            and self.precompute_ref_log_probs \
+            and not self._precomputed_eval_ref_log_probs:
             batch_size = self.args.precompute_ref_batch_size or self.args.per_device_eval_batch_size
             dataloader_params = {
                 "batch_size": batch_size,
