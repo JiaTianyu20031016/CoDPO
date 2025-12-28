@@ -178,6 +178,14 @@ class RewardConfig(TrainingArguments):
         metadata={"help": "Whether to offload the activations to the CPU."},
     )
 
+    # Head warmup: train only the reward head for the first N steps
+    head_warmup_steps: int | None = field(
+        default=None,
+        metadata={
+            "help": "If set to a positive integer, only the reward head parameters are trained for the first N training steps, while backbone parameters are frozen."
+        },
+    )
+
     def __post_init__(self):
         self.bf16 = not (self.fp16) if self.bf16 is None else self.bf16
         super().__post_init__()

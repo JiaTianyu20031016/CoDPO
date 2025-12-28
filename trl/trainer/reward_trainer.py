@@ -448,6 +448,9 @@ class RewardTrainer(BaseTrainer):
         # Add tags to the model
         self.model.add_model_tags(self._tag_names)
 
+        # Head warmup internal flag
+        self._head_unfrozen = False
+
     def _prepare_dataset(
         self,
         dataset: Dataset | IterableDataset,
@@ -582,9 +585,46 @@ class RewardTrainer(BaseTrainer):
 
         return (loss, outputs) if return_outputs else loss
 
+    def _apply_head_warmup_freeze(self, target_model, freeze: bool) -> None:
+        """
+        Freeze/unfreeze backbone parameters while keeping the reward head trainable.
+        Head modules are identified by parameter names containing 'score' or 'classifier'.
+        """
+        head_markers = ("score", "classifier")
+
+        # Prefer the wrapped model used in this step (e.g., Accelerate/DeepSpeed/FSDP engine)
+        model_ref = getattr(target_model, "module", target_model)
+
+        for name, param in model_ref.named_parameters():
+            is_head = any(marker in name for marker in head_markers)
+            if freeze:
+                param.requires_grad = is_head
+            else:
+                param.requires_grad = True
+
     # Override training step to add activation offloading context.
     def training_step(self, *args, **kwargs):
         with self.maybe_activation_offload_context:
+            # Resolve the model actually used by Trainer/super().training_step
+            # Transformers' Trainer signature is training_step(self, model, inputs)
+            step_model = None
+            if len(args) >= 1:
+                step_model = args[0]
+            elif "model" in kwargs:
+                step_model = kwargs["model"]
+            else:
+                step_model = self.model
+
+            warmup_steps = getattr(self.args, "head_warmup_steps", None)
+            if warmup_steps is not None and isinstance(warmup_steps, int) and warmup_steps > 0:
+                if self.state.global_step < warmup_steps:
+                    # During warmup, train head only
+                    self._apply_head_warmup_freeze(step_model, freeze=True)
+                elif self.state.global_step >= warmup_steps and not self._head_unfrozen:
+                    # Unfreeze backbone once warmup is done
+                    self._apply_head_warmup_freeze(step_model, freeze=False)
+                    self._head_unfrozen = True
+
             return super().training_step(*args, **kwargs)
 
     def log(self, logs: dict[str, float], start_time: float | None = None) -> None:

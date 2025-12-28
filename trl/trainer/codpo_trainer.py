@@ -72,6 +72,7 @@ from .utils import (
     peft_module_casting_to_bf16,
     selective_log_softmax,
 )
+from ..experimental.ppo import *
 
 
 if is_peft_available():
@@ -185,7 +186,7 @@ class DataCollatorForPreference(DataCollatorMixin):
         return output
 
 
-class DPOTrainer(BaseTrainer):
+class CoDPOTrainer(BaseTrainer):
     """
     Trainer for Direct Preference Optimization (DPO) method.
 
