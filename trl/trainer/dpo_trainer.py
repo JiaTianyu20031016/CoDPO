@@ -591,6 +591,10 @@ class DPOTrainer(BaseTrainer):
                     name="ref_rejected_logps", column=all_ref_rejected_logps
                 )
             self._precomputed_train_ref_log_probs = True
+            if self.args.precompute_ref_save_path is not None and 'train' in self.args.precompute_ref_save_path.keys():
+                save_path = self.args.precompute_ref_save_path['train']
+                self.train_dataset.save_to_disk(save_path)
+                logger.info(f"Saved train dataset with precomputed reference log probs to {save_path}")
 
             if self.eval_dataset is not None and not ("ref_chosen_logps" in self.eval_dataset.column_names and "ref_rejected_logps" in self.eval_dataset.column_names):
                 # prepare test dataloader
@@ -612,6 +616,11 @@ class DPOTrainer(BaseTrainer):
                 self.eval_dataset = self.eval_dataset.add_column(name="ref_chosen_logps", column=all_ref_chosen_logps)
                 self.eval_dataset = self.eval_dataset.add_column(name="ref_rejected_logps", column=all_ref_rejected_logps)
             self._precomputed_eval_ref_log_probs = True
+            if self.args.precompute_ref_save_path is not None and 'train' in self.args.precompute_ref_save_path.keys():
+                save_path = self.args.precompute_ref_save_path['train']
+                self.train_dataset.save_to_disk(save_path)
+                logger.info(f"Saved train dataset with precomputed reference log probs to {save_path}")
+
 
             # Release the reference model
             base = self.accelerator.unwrap_model(self.ref_model)

@@ -368,6 +368,12 @@ class DPOConfig(TrainingArguments):
             "`per_device_train_batch_size` for training and `per_device_eval_batch_size` for evaluation."
         },
     )
+    precompute_ref_save_path: dict | None = field(
+        default=None,
+        metadata={
+            "help": "Path to save the precomputed reference model log probabilities. This can be used to speed up preprocessing by reusing previously computed values."
+        },
+    )
     tools: list[dict] | None = field(
         default=None,
         metadata={
