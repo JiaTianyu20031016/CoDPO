@@ -14,7 +14,13 @@
 
 import os
 
-from transformers import Trainer, is_wandb_available
+from transformers import is_wandb_available
+
+# The only difference between 'Trainer' class defined in .trainer.py and transformers library is that,
+# In trainer.py, Trainer initializes dataloader (both train and eval) without random sampling.
+# This is to ensure that the order of data is consistent between different iterations, which is important for precomputing reference log probabilities.
+# from .trainer import Trainer
+from transformers import Trainer
 
 from .utils import generate_model_card, get_comet_experiment_url, get_config_model_id
 

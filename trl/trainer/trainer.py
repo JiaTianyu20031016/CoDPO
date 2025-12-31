@@ -1103,11 +1103,12 @@ class Trainer:
             "num_workers": self.args.dataloader_num_workers,
             "pin_memory": self.args.dataloader_pin_memory,
             "persistent_workers": self.args.dataloader_persistent_workers,
+            "shuffle": False
         }
 
         if not isinstance(dataset, torch.utils.data.IterableDataset):
-            if sampler_fn is not None:
-                dataloader_params["sampler"] = sampler_fn(dataset)
+            # if sampler_fn is not None:
+            #     dataloader_params["sampler"] = sampler_fn(dataset)
             dataloader_params["drop_last"] = self.args.dataloader_drop_last
             dataloader_params["prefetch_factor"] = self.args.dataloader_prefetch_factor
             if is_training:
@@ -2559,12 +2560,6 @@ class Trainer:
         # Update the references
         for attr in ("model", "optimizer", "lr_scheduler"):
             setattr(self.callback_handler, attr, getattr(self, attr))
-        # again prepare the dataloader.
-        # at this point, the model is wrapped properly
-        # so we can do some calculation in get_train_dataloader
-        train_dataloader = self.get_train_dataloader()
-        if self.is_fsdp_xla_v2_enabled:
-            train_dataloader = tpu_spmd_dataloader(train_dataloader)
         self.callback_handler.train_dataloader = train_dataloader
 
         self.state.init_training_references(self, max_steps, num_train_epochs, trial)

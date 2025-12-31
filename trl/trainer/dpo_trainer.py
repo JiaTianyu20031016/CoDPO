@@ -92,7 +92,17 @@ if is_wandb_available():
 if is_mlflow_available():
     import mlflow
 
-
+def reset_loader_seed(loader: DataLoader, seed: int) -> None:
+	# Try to touch the sampler's generator (works if loader was built
+	# with RandomSampler(generator=...)). This allows determinism even when we
+	# cannot modify the DataLoader construction code.
+	sampler = getattr(loader, "sampler", None)
+	if sampler is not None:
+		sam_gen = getattr(sampler, "generator", None)
+		if isinstance(sam_gen, torch.Generator):
+			sam_gen.manual_seed(seed)
+			return
+        
 logger = logging.get_logger(__name__)
 
 
@@ -160,6 +170,8 @@ class DataCollatorForPreference(DataCollatorMixin):
         if "ref_chosen_logps" in examples[0] and "ref_rejected_logps" in examples[0]:
             ref_chosen_logps = torch.tensor([example["ref_chosen_logps"] for example in examples])
             ref_rejected_logps = torch.tensor([example["ref_rejected_logps"] for example in examples])
+        if "uid" in examples[0]:
+            uids = torch.tensor([example["uid"] for example in examples])
 
         # Pad
         output = {}
@@ -178,6 +190,8 @@ class DataCollatorForPreference(DataCollatorMixin):
         if "ref_chosen_logps" in examples[0] and "ref_rejected_logps" in examples[0]:
             output["ref_chosen_logps"] = ref_chosen_logps
             output["ref_rejected_logps"] = ref_rejected_logps
+        if "uid" in examples[0]:
+            output["uid"] = uids
         if "token_type_ids" in examples[0]:
             token_type_ids = [torch.tensor(example["token_type_ids"]) for example in examples]
             output["token_type_ids"] = pad(token_type_ids, padding_value=0, padding_side="left")
@@ -567,7 +581,8 @@ class DPOTrainer(BaseTrainer):
 
             if not ("ref_chosen_logps" in self.train_dataset.column_names and "ref_rejected_logps" in self.train_dataset.column_names):
                 # prepare train dataloader
-                data_loader = self.accelerator.prepare(DataLoader(self.train_dataset, **dataloader_params))
+                # data_loader = self.accelerator.prepare(DataLoader(self.train_dataset, **dataloader_params))
+                data_loader = self.get_train_dataloader()
 
                 ref_chosen_logps = []
                 ref_rejected_logps = []
@@ -598,7 +613,8 @@ class DPOTrainer(BaseTrainer):
 
             if self.eval_dataset is not None and not ("ref_chosen_logps" in self.eval_dataset.column_names and "ref_rejected_logps" in self.eval_dataset.column_names):
                 # prepare test dataloader
-                data_loader = self.accelerator.prepare(DataLoader(self.eval_dataset, **dataloader_params))
+                # data_loader = self.accelerator.prepare(DataLoader(self.eval_dataset, **dataloader_params))
+                data_loader = self.get_eval_dataloader()
 
                 ref_chosen_logps = []
                 ref_rejected_logps = []
@@ -616,11 +632,10 @@ class DPOTrainer(BaseTrainer):
                 self.eval_dataset = self.eval_dataset.add_column(name="ref_chosen_logps", column=all_ref_chosen_logps)
                 self.eval_dataset = self.eval_dataset.add_column(name="ref_rejected_logps", column=all_ref_rejected_logps)
             self._precomputed_eval_ref_log_probs = True
-            if self.args.precompute_ref_save_path is not None and 'train' in self.args.precompute_ref_save_path.keys():
-                save_path = self.args.precompute_ref_save_path['train']
-                self.train_dataset.save_to_disk(save_path)
-                logger.info(f"Saved train dataset with precomputed reference log probs to {save_path}")
-
+            if self.args.precompute_ref_save_path is not None and 'eval' in self.args.precompute_ref_save_path.keys():
+                save_path = self.args.precompute_ref_save_path['eval']
+                self.eval_dataset.save_to_disk(save_path)
+                logger.info(f"Saved eval dataset with precomputed reference log probs to {save_path}")
 
             # Release the reference model
             base = self.accelerator.unwrap_model(self.ref_model)
@@ -749,6 +764,12 @@ class DPOTrainer(BaseTrainer):
                 **map_kwargs,
             )
 
+            if 'uid' not in dataset.column_names:
+                # Add a uid column if not present
+                dataset = dataset.add_column(
+                    name='uid',
+                    column=list(range(len(dataset)))
+                )
         return dataset
 
     @staticmethod
@@ -1704,7 +1725,7 @@ class DPOTrainer(BaseTrainer):
     ) -> tuple[torch.Tensor, dict[str, float]]:
         """Compute the DPO loss and other metrics for the given batch of inputs for train or test."""
         metrics = {}
-
+  
         if self.args.use_liger_kernel:
             model_output = self._compute_loss_liger(model, batch)
             losses = model_output["loss"]
@@ -1715,6 +1736,15 @@ class DPOTrainer(BaseTrainer):
 
             # if ref_chosen_logps and ref_rejected_logps in batch use them, otherwise use the reference model
             if "ref_chosen_logps" in batch and "ref_rejected_logps" in batch:
+                # record_ref_chosen_logps = batch["ref_chosen_logps"]
+                # record_ref_rejected_logps = batch["ref_rejected_logps"]
+                # ref_chosen_logps, ref_rejected_logps = self.compute_ref_log_probs(batch)
+                # assert torch.allclose(
+                #     record_ref_chosen_logps, ref_chosen_logps
+                # ), "ref_chosen_logps in batch do not match those computed from the reference model"
+                # assert torch.allclose(
+                #     record_ref_rejected_logps, ref_rejected_logps
+                # ), "ref_rejected_logps in batch do not match those computed from the reference model"
                 ref_chosen_logps = batch["ref_chosen_logps"]
                 ref_rejected_logps = batch["ref_rejected_logps"]
             else:
