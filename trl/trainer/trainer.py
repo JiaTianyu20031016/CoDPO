@@ -4310,7 +4310,8 @@ class Trainer:
         os.makedirs(output_dir, exist_ok=True)
         logger.info(f"Saving model checkpoint to {output_dir}")
 
-        supported_classes = (PreTrainedModel,) if not is_peft_available() else (PreTrainedModel, PeftModel)
+        from ..experimental.ppo.modeling_value_head import PreTrainedModelWrapper
+        supported_classes = (PreTrainedModel,PreTrainedModelWrapper) if not is_peft_available() else (PreTrainedModel, PeftModel,PreTrainedModelWrapper)
         # Save a trained model and configuration using `save_pretrained()`.
         # They can then be reloaded using `from_pretrained()`
         if not isinstance(self.model, supported_classes):

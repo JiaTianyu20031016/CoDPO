@@ -590,6 +590,14 @@ class PreTrainedModelWrapper(nn.Module):
 
         return scores
 
+    def __getattr__(self, name):
+        # 只在自身不存在该属性时调用
+        try:
+            return super().__getattr__(name)
+        except AttributeError:
+            pm = super().__getattr__("pretrained_model")
+            return getattr(pm, name)
+    
 
 class ValueHead(nn.Module):
     r"""
@@ -706,6 +714,7 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
         past_key_values=None,
         attention_mask=None,
         return_past_key_values=False,
+        head_warmup=False,
         **kwargs,
     ):
         r"""
@@ -738,6 +747,8 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
         )
 
         last_hidden_state = base_model_output.hidden_states[-1]
+        if head_warmup:
+            last_hidden_state = last_hidden_state.detach()
         lm_logits = base_model_output.logits
         loss = base_model_output.loss
 
@@ -750,10 +761,7 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
         if lm_logits.dtype != torch.float32:
             lm_logits = lm_logits.float()
 
-        if return_past_key_values:
-            return (lm_logits, loss, value, base_model_output.past_key_values)
-        else:
-            return (lm_logits, loss, value)
+        return base_model_output, value
 
     def generate(self, *args, **kwargs):
         r"""
@@ -834,6 +842,9 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
 
             self.is_sequential_parallel = True
 
+
+
+    
 
 class AutoModelForSeq2SeqLMWithValueHead(PreTrainedModelWrapper):
     """

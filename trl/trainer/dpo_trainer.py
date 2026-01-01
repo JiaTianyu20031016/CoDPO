@@ -626,6 +626,10 @@ class DPOTrainer(BaseTrainer):
                     ref_chosen_logps.append(ref_chosen_logp.cpu())
                     ref_rejected_logps.append(ref_rejected_logp.cpu())
 
+                    # Unnecessary cache clearing to avoid OOM
+                    empty_cache()
+                    self.accelerator.free_memory()
+
                 all_ref_chosen_logps = torch.cat(ref_chosen_logps).float().numpy()
                 all_ref_rejected_logps = torch.cat(ref_rejected_logps).float().numpy()
 
@@ -637,14 +641,17 @@ class DPOTrainer(BaseTrainer):
                 self.eval_dataset.save_to_disk(save_path)
                 logger.info(f"Saved eval dataset with precomputed reference log probs to {save_path}")
 
+            before = torch.cuda.memory_allocated()
+            before_rsv = torch.cuda.memory_reserved()
+            
             # Release the reference model
-            base = self.accelerator.unwrap_model(self.ref_model)
-            # Drop references
-            self.ref_model = None
-            del base
-            # Free GPU memory
+            self.ref_model, = self.accelerator.free_memory(self.ref_model)
             empty_cache()
-            self.accelerator.free_memory()
+            
+            torch.cuda.synchronize()
+            after = torch.cuda.memory_allocated()
+            after_rsv = torch.cuda.memory_reserved()
+            logger.info(f"ref_model freed: allocated {before}->{after} bytes, reserved {before_rsv}->{after_rsv}")
 
 
     def _prepare_peft_model(

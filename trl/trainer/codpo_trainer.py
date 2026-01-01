@@ -72,7 +72,7 @@ from .utils import (
     peft_module_casting_to_bf16,
     selective_log_softmax,
 )
-from ..experimental.ppo import *
+from ..experimental.ppo.modeling_value_head import AutoModelForCausalLMWithValueHead
 
 
 if is_peft_available():
@@ -93,7 +93,17 @@ if is_wandb_available():
 if is_mlflow_available():
     import mlflow
 
-
+def reset_loader_seed(loader: DataLoader, seed: int) -> None:
+	# Try to touch the sampler's generator (works if loader was built
+	# with RandomSampler(generator=...)). This allows determinism even when we
+	# cannot modify the DataLoader construction code.
+	sampler = getattr(loader, "sampler", None)
+	if sampler is not None:
+		sam_gen = getattr(sampler, "generator", None)
+		if isinstance(sam_gen, torch.Generator):
+			sam_gen.manual_seed(seed)
+			return
+        
 logger = logging.get_logger(__name__)
 
 
@@ -161,6 +171,8 @@ class DataCollatorForPreference(DataCollatorMixin):
         if "ref_chosen_logps" in examples[0] and "ref_rejected_logps" in examples[0]:
             ref_chosen_logps = torch.tensor([example["ref_chosen_logps"] for example in examples])
             ref_rejected_logps = torch.tensor([example["ref_rejected_logps"] for example in examples])
+        if "uid" in examples[0]:
+            uids = torch.tensor([example["uid"] for example in examples])
 
         # Pad
         output = {}
@@ -179,6 +191,8 @@ class DataCollatorForPreference(DataCollatorMixin):
         if "ref_chosen_logps" in examples[0] and "ref_rejected_logps" in examples[0]:
             output["ref_chosen_logps"] = ref_chosen_logps
             output["ref_rejected_logps"] = ref_rejected_logps
+        if "uid" in examples[0]:
+            output["uid"] = uids
         if "token_type_ids" in examples[0]:
             token_type_ids = [torch.tensor(example["token_type_ids"]) for example in examples]
             output["token_type_ids"] = pad(token_type_ids, padding_value=0, padding_side="left")
@@ -193,7 +207,7 @@ class CoDPOTrainer(BaseTrainer):
     This class is a wrapper around the [`transformers.Trainer`] class and inherits all of its attributes and methods.
 
     Args:
-        model (`str | PreTrainedModel`):
+        model (`str | AutoModelForCausalLMWithValueHead`):
             Model to be trained. Can be either:
 
             - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a
@@ -270,7 +284,7 @@ class CoDPOTrainer(BaseTrainer):
 
     def __init__(
         self,
-        model: str | nn.Module | PreTrainedModel,
+        model: str | nn.Module | AutoModelForCausalLMWithValueHead,
         ref_model: PreTrainedModel | nn.Module | str | None = None,
         args: DPOConfig | None = None,
         data_collator: DataCollator | None = None,  # type: ignore
@@ -456,6 +470,7 @@ class CoDPOTrainer(BaseTrainer):
         self.aux_loss_enabled = getattr(model.config, "output_router_logits", False)
         self.use_weighting = args.use_weighting
         self.aux_loss_coef = getattr(model.config, "router_aux_loss_coef", 0.0)
+        self.value_loss_coef = args.value_loss_coef
         if self.aux_loss_enabled and self.aux_loss_coef == 0.0:
             logger.warning(
                 "You set `output_router_logits` to `True` in the model config, but `router_aux_loss_coef` is set to "
@@ -568,7 +583,8 @@ class CoDPOTrainer(BaseTrainer):
 
             if not ("ref_chosen_logps" in self.train_dataset.column_names and "ref_rejected_logps" in self.train_dataset.column_names):
                 # prepare train dataloader
-                data_loader = self.accelerator.prepare(DataLoader(self.train_dataset, **dataloader_params))
+                # data_loader = self.accelerator.prepare(DataLoader(self.train_dataset, **dataloader_params))
+                data_loader = self.get_train_dataloader()
 
                 ref_chosen_logps = []
                 ref_rejected_logps = []
@@ -592,10 +608,15 @@ class CoDPOTrainer(BaseTrainer):
                     name="ref_rejected_logps", column=all_ref_rejected_logps
                 )
             self._precomputed_train_ref_log_probs = True
+            if self.args.precompute_ref_save_path is not None and 'train' in self.args.precompute_ref_save_path.keys():
+                save_path = self.args.precompute_ref_save_path['train']
+                self.train_dataset.save_to_disk(save_path)
+                logger.info(f"Saved train dataset with precomputed reference log probs to {save_path}")
 
             if self.eval_dataset is not None and not ("ref_chosen_logps" in self.eval_dataset.column_names and "ref_rejected_logps" in self.eval_dataset.column_names):
                 # prepare test dataloader
-                data_loader = self.accelerator.prepare(DataLoader(self.eval_dataset, **dataloader_params))
+                # data_loader = self.accelerator.prepare(DataLoader(self.eval_dataset, **dataloader_params))
+                data_loader = self.get_eval_dataloader()
 
                 ref_chosen_logps = []
                 ref_rejected_logps = []
@@ -607,21 +628,32 @@ class CoDPOTrainer(BaseTrainer):
                     ref_chosen_logps.append(ref_chosen_logp.cpu())
                     ref_rejected_logps.append(ref_rejected_logp.cpu())
 
+                    # Unnecessary cache clearing to avoid OOM
+                    empty_cache()
+                    self.accelerator.free_memory()
+
                 all_ref_chosen_logps = torch.cat(ref_chosen_logps).float().numpy()
                 all_ref_rejected_logps = torch.cat(ref_rejected_logps).float().numpy()
 
                 self.eval_dataset = self.eval_dataset.add_column(name="ref_chosen_logps", column=all_ref_chosen_logps)
                 self.eval_dataset = self.eval_dataset.add_column(name="ref_rejected_logps", column=all_ref_rejected_logps)
             self._precomputed_eval_ref_log_probs = True
+            if self.args.precompute_ref_save_path is not None and 'eval' in self.args.precompute_ref_save_path.keys():
+                save_path = self.args.precompute_ref_save_path['eval']
+                self.eval_dataset.save_to_disk(save_path)
+                logger.info(f"Saved eval dataset with precomputed reference log probs to {save_path}")
 
+            before = torch.cuda.memory_allocated()
+            before_rsv = torch.cuda.memory_reserved()
+            
             # Release the reference model
-            base = self.accelerator.unwrap_model(self.ref_model)
-            # Drop references
-            self.ref_model = None
-            del base
-            # Free GPU memory
+            self.ref_model, = self.accelerator.free_memory(self.ref_model)
             empty_cache()
-            self.accelerator.free_memory()
+            
+            torch.cuda.synchronize()
+            after = torch.cuda.memory_allocated()
+            after_rsv = torch.cuda.memory_reserved()
+            logger.info(f"ref_model freed: allocated {before}->{after} bytes, reserved {before_rsv}->{after_rsv}")
 
 
     def _prepare_peft_model(
@@ -741,6 +773,12 @@ class CoDPOTrainer(BaseTrainer):
                 **map_kwargs,
             )
 
+            if 'uid' not in dataset.column_names:
+                # Add a uid column if not present
+                dataset = dataset.add_column(
+                    name='uid',
+                    column=list(range(len(dataset)))
+                )
         return dataset
 
     @staticmethod
@@ -984,6 +1022,38 @@ class CoDPOTrainer(BaseTrainer):
         )
 
         return output
+
+    def value_loss(
+        self,
+        chosen_values: torch.FloatTensor,
+        rejected_values: torch.FloatTensor,
+        model_output: dict[str, torch.FloatTensor] = None,
+    ) -> torch.FloatTensor:
+        """
+        Compute the value loss for a batch of chosen and rejected values.
+
+        Args:
+            chosen_values (`torch.FloatTensor`):
+                Values for the chosen responses. Shape: `(batch_size,)`.
+            rejected_values (`torch.FloatTensor`):
+                Values for the rejected responses. Shape: `(batch_size,)`.
+            model_output (`dict[str, torch.FloatTensor]`, *optional*):
+                The output of the model's forward pass. This is used to compute auxiliary losses if enabled
+        Returns:
+            `torch.FloatTensor`: The computed value loss.
+        """
+        device = self.accelerator.device
+        chosen_values = chosen_values.to(device)
+        rejected_values = rejected_values.to(device)
+
+        logits = chosen_values - rejected_values
+        losses = (
+            -F.logsigmoid(logits) * (1 - self.label_smoothing)
+            - F.logsigmoid(-logits) * self.label_smoothing
+        )
+
+        return losses
+
 
     def dpo_loss(
         self,
@@ -1457,6 +1527,11 @@ class CoDPOTrainer(BaseTrainer):
                 Whether this method is being called for the reference model. If `True`, length desensitization is not
                 applied.
         """
+        head_warmup = False
+        warmup_steps = getattr(self.args, "head_warmup_steps", None)
+        if warmup_steps is not None and isinstance(warmup_steps, int) and warmup_steps > 0:
+            head_warmup = self.state.global_step < warmup_steps
+
         num_examples = batch["prompt_input_ids"].shape[0]
 
         concatenated_batch = self.concatenated_inputs(batch, padding_value=self.pad_token_id)
@@ -1484,8 +1559,13 @@ class CoDPOTrainer(BaseTrainer):
                 input_ids=prompt_input_ids,
                 attention_mask=prompt_attention_mask,
                 labels=labels,  # we need the labels for the logits to be returned
+                head_warmup=head_warmup,
                 **model_kwargs,
             )
+            if isinstance(outputs, tuple):
+                outputs, value = outputs
+            else:
+                value = None
             logits = outputs.logits
             loss_mask = completion_attention_mask.bool()
         else:
@@ -1577,7 +1657,11 @@ class CoDPOTrainer(BaseTrainer):
             else:
                 model_kwargs["attention_mask"] = attention_mask
 
-            outputs = model(input_ids, **model_kwargs)
+            outputs = model(input_ids, head_warmup=head_warmup, **model_kwargs)
+            if isinstance(outputs, tuple):
+                outputs, value = outputs
+            else:
+                value = None
             logits = outputs.logits
 
             # Offset the logits by one to align with the labels
@@ -1686,6 +1770,22 @@ class CoDPOTrainer(BaseTrainer):
         if self.aux_loss_enabled:
             output["aux_loss"] = outputs.aux_loss
 
+        if value is not None:
+            # Take the scalar value at the last valid token for each sequence
+            value_tensor = value
+            if value_tensor.dim() == 3 and value_tensor.size(-1) == 1:
+                value_tensor = value_tensor.squeeze(-1)
+
+            mask = loss_mask
+            has_token = mask.any(dim=1)
+            last_indices = torch.clamp(mask.int().sum(dim=1) - 1, min=0)
+            batch_idx = torch.arange(value_tensor.size(0), device=value_tensor.device)
+            last_values = value_tensor[batch_idx, last_indices]
+            last_values = torch.where(has_token, last_values, torch.zeros_like(last_values))
+
+            output["chosen_values"] = last_values[:num_examples]
+            output["rejected_values"] = last_values[num_examples:]
+
         return output
 
     def get_batch_loss_metrics(
@@ -1696,8 +1796,9 @@ class CoDPOTrainer(BaseTrainer):
     ) -> tuple[torch.Tensor, dict[str, float]]:
         """Compute the DPO loss and other metrics for the given batch of inputs for train or test."""
         metrics = {}
-
+  
         if self.args.use_liger_kernel:
+            raise(NotImplementedError("Liger kernel is not supported in CoDPO trainer"))
             model_output = self._compute_loss_liger(model, batch)
             losses = model_output["loss"]
             chosen_rewards = model_output["chosen_rewards"]
@@ -1707,6 +1808,15 @@ class CoDPOTrainer(BaseTrainer):
 
             # if ref_chosen_logps and ref_rejected_logps in batch use them, otherwise use the reference model
             if "ref_chosen_logps" in batch and "ref_rejected_logps" in batch:
+                # record_ref_chosen_logps = batch["ref_chosen_logps"]
+                # record_ref_rejected_logps = batch["ref_rejected_logps"]
+                # ref_chosen_logps, ref_rejected_logps = self.compute_ref_log_probs(batch)
+                # assert torch.allclose(
+                #     record_ref_chosen_logps, ref_chosen_logps
+                # ), "ref_chosen_logps in batch do not match those computed from the reference model"
+                # assert torch.allclose(
+                #     record_ref_rejected_logps, ref_rejected_logps
+                # ), "ref_rejected_logps in batch do not match those computed from the reference model"
                 ref_chosen_logps = batch["ref_chosen_logps"]
                 ref_rejected_logps = batch["ref_rejected_logps"]
             else:
@@ -1735,6 +1845,14 @@ class CoDPOTrainer(BaseTrainer):
                 chosen_rewards = chosen_rewards + _chosen_rewards * weight
                 rejected_rewards = rejected_rewards + _rejected_rewards * weight
 
+            chosen_values = model_output.get("chosen_values", None)
+            rejected_values = model_output.get("rejected_values", None)
+            if chosen_values is not None and rejected_values is not None:
+                value_accuracies = (chosen_values > rejected_values).float()
+                losses = losses + self.value_loss_coef * self.value_loss(
+                    chosen_values, rejected_values
+                )
+        
         reward_accuracies = (chosen_rewards > rejected_rewards).float()
 
         if self.args.rpo_alpha is not None:
@@ -1753,6 +1871,13 @@ class CoDPOTrainer(BaseTrainer):
         metrics[f"{prefix}rewards/margins"] = (
             self.accelerator.gather_for_metrics(chosen_rewards - rejected_rewards).mean().item()
         )
+        if chosen_values is not None and rejected_values is not None:
+            metrics[f"{prefix}values/chosen"] = self.accelerator.gather_for_metrics(chosen_values).mean().item()
+            metrics[f"{prefix}values/rejected"] = self.accelerator.gather_for_metrics(rejected_values).mean().item()
+            metrics[f"{prefix}values/accuracies"] = self.accelerator.gather_for_metrics(value_accuracies).mean().item()
+            metrics[f"{prefix}values/margins"] = (
+                self.accelerator.gather_for_metrics(chosen_values - rejected_values).mean().item()
+            )
         metrics[f"{prefix}logps/chosen"] = (
             self.accelerator.gather_for_metrics(model_output["chosen_logps"]).detach().mean().item()
         )
