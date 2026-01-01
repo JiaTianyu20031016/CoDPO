@@ -283,6 +283,23 @@ class PreTrainedModelWrapper(nn.Module):
             safe_sharded_index_filename = os.path.join(pretrained_model_name_or_path, "model.safetensors.index.json")
             is_sharded = False
             use_safe = os.path.exists(safe_filename)
+            files_to_download = None
+
+            # If a safetensors index is present locally, derive the shard filenames from it.
+            if os.path.exists(safe_sharded_index_filename):
+                try:
+                    with open(safe_sharded_index_filename, "r") as f:
+                        safe_index = json.load(f)
+
+                    shard_files = list({v for v in safe_index.get("weight_map", {}).values()})
+                    if shard_files:
+                        safe_filename = os.path.join(pretrained_model_name_or_path, shard_files[0])
+                        use_safe = True
+                        is_sharded = True
+                        files_to_download = shard_files
+                except Exception:
+                    # Fall back to the existing logic if the index cannot be read
+                    pass
 
             if not (os.path.exists(filename) or os.path.exists(safe_filename)):
                 # Try with `pytorch_model.bin`
@@ -315,12 +332,15 @@ class PreTrainedModelWrapper(nn.Module):
                     state_dict = {}
 
                     for shard_file in files_to_download:
-                        filename = hf_hub_download(
-                            pretrained_model_name_or_path,
-                            shard_file,
-                            token=token,
-                        )
-                        state_dict.update(loading_func(filename, **load_kwargs))
+                        # Use local shard if available; otherwise download from the hub
+                        shard_path = os.path.join(pretrained_model_name_or_path, shard_file)
+                        if not os.path.exists(shard_path):
+                            shard_path = hf_hub_download(
+                                pretrained_model_name_or_path,
+                                shard_file,
+                                token=token,
+                            )
+                        state_dict.update(loading_func(shard_path, **load_kwargs))
                 else:
                     state_dict = loading_func(filename if not use_safe else safe_filename, **load_kwargs)
 
@@ -776,6 +796,27 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
                 Keyword arguments passed to the `generate` method of the wrapped model.
         """
         return self.pretrained_model.generate(*args, **kwargs)
+
+    def save_pretrained(self, *args, **kwargs):
+        r"""
+        Save the pretrained model to a directory. This method is a wrapper around
+        [`~transformers.PreTrainedModel.save_pretrained`]. Please refer to the documentation of
+        [`~transformers.PreTrainedModel.save_pretrained`] for more information.
+
+        Args:
+            *args (`list`, *optional*):
+                Positional arguments passed along to the underlying model's `save_pretrained` method.
+            **kwargs (`dict`, *optional*):
+                Keyword arguments passed along to the underlying model's `save_pretrained` method.
+        """
+        state_dict = kwargs.get("state_dict")
+        if state_dict is not None:
+            for key in list(state_dict.keys()):
+                if key.startswith("pretrained_model."):
+                    new_key = key.replace("pretrained_model.", "")
+                    state_dict[new_key] = state_dict.pop(key)
+
+        return super().save_pretrained(*args, **kwargs)
 
     def state_dict(self, *args, **kwargs):
         r"""
