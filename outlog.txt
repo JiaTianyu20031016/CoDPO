@@ -1,0 +1,1475 @@
+nohup: ignoring input
+/data1/jty/anaconda3/envs/codpo/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+W0109 01:42:26.566000 336297 site-packages/torch/distributed/run.py:774] 
+W0109 01:42:26.566000 336297 site-packages/torch/distributed/run.py:774] *****************************************
+W0109 01:42:26.566000 336297 site-packages/torch/distributed/run.py:774] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0109 01:42:26.566000 336297 site-packages/torch/distributed/run.py:774] *****************************************
+/data1/jty/anaconda3/envs/codpo/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/data1/jty/anaconda3/envs/codpo/lib/python3.12/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+CoDPOConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+average_tokens_across_devices=True,
+base_model_attribute_name=model,
+batch_eval_metrics=False,
+beta=0.1,
+bf16=True,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_num_proc=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_dropout=True,
+disable_tqdm=False,
+discopop_tau=0.05,
+do_eval=True,
+do_predict=False,
+do_train=False,
+dpo_loss_coef=1.0,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_steps=20,
+eval_strategy=IntervalStrategy.STEPS,
+eval_use_gather_object=False,
+f_alpha_divergence_coef=1.0,
+f_divergence_type=FDivergenceType.REVERSE_KL,
+force_use_ref_model=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+generate_during_eval=False,
+gradient_accumulation_steps=8,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+head_warmup_steps=0,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_revision=None,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_pad_token_id=-100,
+label_smoothing=0.0,
+label_smoothing_factor=0.0,
+ld_alpha=None,
+learning_rate=5e-07,
+length_column_name=length,
+liger_kernel_config=None,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=checkpoints/Qwen2.5-3B-Instruct-CODPO-no-warmup/runs/Jan09_01-42-33_oem,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=IntervalStrategy.STEPS,
+loss_type=sigmoid,
+loss_weights=None,
+lr_scheduler_kwargs=None,
+lr_scheduler_type=SchedulerType.LINEAR,
+max_completion_length=None,
+max_grad_norm=1.0,
+max_length=1024,
+max_prompt_length=512,
+max_steps=-1,
+metric_for_best_model=None,
+model_adapter_name=None,
+model_init_kwargs=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=1.0,
+optim=OptimizerNames.ADAMW_TORCH_FUSED,
+optim_args=None,
+optim_target_modules=None,
+output_dir=checkpoints/Qwen2.5-3B-Instruct-CODPO-no-warmup,
+overwrite_output_dir=False,
+pad_token=<PAD_TOKEN>,
+padding_free=False,
+parallelism_config=None,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=8,
+precompute_ref_batch_size=None,
+precompute_ref_log_probs=False,
+precompute_ref_save_path=None,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+ref_adapter_name=None,
+ref_model_init_kwargs=None,
+ref_model_mixup_alpha=0.6,
+ref_model_sync_steps=512,
+reference_free=False,
+remove_unused_columns=False,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+rpo_alpha=None,
+run_name=None,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=SaveStrategy.EPOCH,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+sync_ref_model=False,
+tf32=None,
+tools=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+truncation_mode=keep_end,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_liger_loss=None,
+use_logits_to_keep=False,
+use_mps_device=False,
+use_weighting=False,
+value_loss_coef=0.5,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+CoDPOConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+average_tokens_across_devices=True,
+base_model_attribute_name=model,
+batch_eval_metrics=False,
+beta=0.1,
+bf16=True,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_num_proc=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_dropout=True,
+disable_tqdm=False,
+discopop_tau=0.05,
+do_eval=True,
+do_predict=False,
+do_train=False,
+dpo_loss_coef=1.0,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_steps=20,
+eval_strategy=IntervalStrategy.STEPS,
+eval_use_gather_object=False,
+f_alpha_divergence_coef=1.0,
+f_divergence_type=FDivergenceType.REVERSE_KL,
+force_use_ref_model=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+generate_during_eval=False,
+gradient_accumulation_steps=8,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+head_warmup_steps=0,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_revision=None,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_pad_token_id=-100,
+label_smoothing=0.0,
+label_smoothing_factor=0.0,
+ld_alpha=None,
+learning_rate=5e-07,
+length_column_name=length,
+liger_kernel_config=None,
+load_best_model_at_end=False,
+local_rank=1,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=checkpoints/Qwen2.5-3B-Instruct-CODPO-no-warmup/runs/Jan09_01-42-33_oem,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=IntervalStrategy.STEPS,
+loss_type=sigmoid,
+loss_weights=None,
+lr_scheduler_kwargs=None,
+lr_scheduler_type=SchedulerType.LINEAR,
+max_completion_length=None,
+max_grad_norm=1.0,
+max_length=1024,
+max_prompt_length=512,
+max_steps=-1,
+metric_for_best_model=None,
+model_adapter_name=None,
+model_init_kwargs=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=1.0,
+optim=OptimizerNames.ADAMW_TORCH_FUSED,
+optim_args=None,
+optim_target_modules=None,
+output_dir=checkpoints/Qwen2.5-3B-Instruct-CODPO-no-warmup,
+overwrite_output_dir=False,
+pad_token=<PAD_TOKEN>,
+padding_free=False,
+parallelism_config=None,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=8,
+precompute_ref_batch_size=None,
+precompute_ref_log_probs=False,
+precompute_ref_save_path=None,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+ref_adapter_name=None,
+ref_model_init_kwargs=None,
+ref_model_mixup_alpha=0.6,
+ref_model_sync_steps=512,
+reference_free=False,
+remove_unused_columns=False,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+rpo_alpha=None,
+run_name=None,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=SaveStrategy.EPOCH,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+sync_ref_model=False,
+tf32=None,
+tools=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+truncation_mode=keep_end,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_liger_loss=None,
+use_logits_to_keep=False,
+use_mps_device=False,
+use_weighting=False,
+value_loss_coef=0.5,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.37it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.20it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.67it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.62it/s]
+/data2/jty/CoDPO/trl/experimental/ppo/modeling_value_head.py:273: FutureWarning: The `AutoModelForCausalLMWithValueHead` is now located in `trl.experimental`. Please update your imports to `from trl.experimental.ppo import AutoModelForCausalLMWithValueHead`. The current import path will be removed and no longer supported in TRL 0.29. For more information, see https://github.com/huggingface/trl/issues/4223.
+  model = cls(pretrained_model, **multi_adapter_args, **trl_model_args)
+Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.60it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.52it/s]
+/data2/jty/CoDPO/trl/experimental/ppo/modeling_value_head.py:273: FutureWarning: The `AutoModelForCausalLMWithValueHead` is now located in `trl.experimental`. Please update your imports to `from trl.experimental.ppo import AutoModelForCausalLMWithValueHead`. The current import path will be removed and no longer supported in TRL 0.29. For more information, see https://github.com/huggingface/trl/issues/4223.
+  model = cls(pretrained_model, **multi_adapter_args, **trl_model_args)
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.35it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.30it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.72it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.65it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.74it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.65it/s]
+WARNING:trl.trainer.trainer:The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+DeepSpeedZeRoOffload initialize [begin]
+MA 5.75 GB         Max_MA 7.49 GB         CA 7.66 GB         Max_CA 8 GB 
+CPU Virtual Memory:  used = 128.22 GB, percent = 12.7%
+Parameter Offload - Persistent parameters statistics: param_count = 181, numel = 241664
+DeepSpeedZeRoOffload initialize [end]
+MA 5.75 GB         Max_MA 5.75 GB         CA 7.66 GB         Max_CA 8 GB 
+CPU Virtual Memory:  used = 128.22 GB, percent = 12.7%
+WARNING:trl.trainer.trainer:The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+WARNING:accelerate.accelerator:Gradient accumulation steps mismatch: GradientAccumulationPlugin has 1, DeepSpeed config has 8. Using DeepSpeed's value.
+Stage 3 initialize beginning
+MA 5.75 GB         Max_MA 5.75 GB         CA 5.91 GB         Max_CA 8 GB 
+CPU Virtual Memory:  used = 128.22 GB, percent = 12.7%
+DeepSpeedZeRoOffload initialize [begin]
+MA 5.75 GB         Max_MA 5.75 GB         CA 5.91 GB         Max_CA 6 GB 
+CPU Virtual Memory:  used = 128.22 GB, percent = 12.7%
+Parameter Offload - Persistent parameters statistics: param_count = 183, numel = 243713
+DeepSpeedZeRoOffload initialize [end]
+MA 5.75 GB         Max_MA 5.75 GB         CA 5.91 GB         Max_CA 6 GB 
+CPU Virtual Memory:  used = 128.24 GB, percent = 12.7%
+Before creating fp16 partitions
+MA 5.75 GB         Max_MA 5.75 GB         CA 5.91 GB         Max_CA 6 GB 
+CPU Virtual Memory:  used = 128.23 GB, percent = 12.7%
+After creating fp16 partitions: 3
+MA 5.75 GB         Max_MA 5.75 GB         CA 6.0 GB         Max_CA 6 GB 
+CPU Virtual Memory:  used = 128.24 GB, percent = 12.7%
+Before creating fp32 partitions
+MA 5.75 GB         Max_MA 5.75 GB         CA 6.0 GB         Max_CA 6 GB 
+CPU Virtual Memory:  used = 128.25 GB, percent = 12.7%
+After creating fp32 partitions
+MA 11.5 GB         Max_MA 15.24 GB         CA 15.49 GB         Max_CA 15 GB 
+CPU Virtual Memory:  used = 128.25 GB, percent = 12.7%
+Before initializing optimizer states
+MA 11.5 GB         Max_MA 11.5 GB         CA 15.49 GB         Max_CA 15 GB 
+CPU Virtual Memory:  used = 128.25 GB, percent = 12.7%
+After initializing optimizer states
+MA 11.5 GB         Max_MA 15.24 GB         CA 19.23 GB         Max_CA 19 GB 
+CPU Virtual Memory:  used = 128.25 GB, percent = 12.7%
+After initializing ZeRO optimizer
+MA 15.3 GB         Max_MA 16.46 GB         CA 19.23 GB         Max_CA 19 GB 
+CPU Virtual Memory:  used = 128.36 GB, percent = 12.7%
+wandb: Currently logged in as: jty20031016 (jty20031016-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run qw45iv30
+wandb: Tracking run with wandb version 0.23.0
+wandb: Run data is saved locally in /data2/jty/CoDPO/wandb/run-20260109_014248-qw45iv30
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run playful-water-277
+wandb: ⭐️ View project at https://wandb.ai/jty20031016-/huggingface
+wandb: 🚀 View run at https://wandb.ai/jty20031016-/huggingface/runs/qw45iv30
+  0%|          | 0/472 [00:00<?, ?it/s]  0%|          | 1/472 [00:26<3:28:13, 26.53s/it]  0%|          | 2/472 [00:52<3:23:13, 25.94s/it]  1%|          | 3/472 [01:16<3:15:38, 25.03s/it]  1%|          | 4/472 [01:39<3:11:47, 24.59s/it]  1%|          | 5/472 [02:03<3:09:34, 24.36s/it]  1%|▏         | 6/472 [02:28<3:09:16, 24.37s/it]  1%|▏         | 7/472 [02:53<3:11:47, 24.75s/it]  2%|▏         | 8/472 [03:18<3:11:42, 24.79s/it]  2%|▏         | 9/472 [03:43<3:12:12, 24.91s/it]  2%|▏         | 10/472 [04:07<3:08:39, 24.50s/it]                                                  {'loss': 0.9931, 'grad_norm': 7.292590380382246, 'learning_rate': 4.904661016949152e-07, 'rewards/chosen': -0.04711351543664932, 'rewards/rejected': -0.09254169464111328, 'rewards/accuracies': 0.4085937440395355, 'rewards/margins': 0.04546642303466797, 'logps/chosen': -344.7875061035156, 'logps/rejected': -326.8125, 'logits/chosen': -1.724609375, 'logits/rejected': -1.6912109851837158, 'losses/dpo_loss': 0.677783191204071, 'values/chosen': -1.5178711414337158, 'values/rejected': -1.705468773841858, 'values/accuracies': 0.66015625, 'values/margins': 0.18780212104320526, 'losses/value_loss': 0.63134765625, 'epoch': 0.02, 'num_input_tokens_seen': 0, 'train_runtime': 253.142, 'train_tokens_per_second': 0.0}
+  2%|▏         | 10/472 [04:07<3:08:39, 24.50s/it]  2%|▏         | 11/472 [04:31<3:07:52, 24.45s/it]  3%|▎         | 12/472 [04:55<3:06:23, 24.31s/it]  3%|▎         | 13/472 [05:20<3:06:25, 24.37s/it]  3%|▎         | 14/472 [05:45<3:07:34, 24.57s/it]  3%|▎         | 15/472 [06:10<3:09:06, 24.83s/it]  3%|▎         | 16/472 [06:36<3:10:18, 25.04s/it]  4%|▎         | 17/472 [07:00<3:08:49, 24.90s/it]  4%|▍         | 18/472 [07:26<3:09:28, 25.04s/it]  4%|▍         | 19/472 [07:48<3:03:22, 24.29s/it]  4%|▍         | 20/472 [08:12<3:01:41, 24.12s/it]                                                  {'loss': 0.9139, 'grad_norm': 5.084459752429859, 'learning_rate': 4.798728813559322e-07, 'rewards/chosen': -0.3561950623989105, 'rewards/rejected': -0.6357177495956421, 'rewards/accuracies': 0.65625, 'rewards/margins': 0.2793624997138977, 'logps/chosen': -337.04998779296875, 'logps/rejected': -321.3500061035156, 'logits/chosen': -1.697851538658142, 'logits/rejected': -1.6603515148162842, 'losses/dpo_loss': 0.6053222417831421, 'values/chosen': -1.4967772960662842, 'values/rejected': -1.727929711341858, 'values/accuracies': 0.6851562261581421, 'values/margins': 0.23131409287452698, 'losses/value_loss': 0.616943359375, 'epoch': 0.04, 'num_input_tokens_seen': 0, 'train_runtime': 498.1762, 'train_tokens_per_second': 0.0}
+  4%|▍         | 20/472 [08:12<3:01:41, 24.12s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.34s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.28s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.24s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.11s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.18s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.16s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.20s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                  
+                                               [A{'eval_loss': 0.9046079516410828, 'eval_runtime': 48.6876, 'eval_samples_per_second': 12.508, 'eval_steps_per_second': 0.801, 'eval_rewards/chosen': -0.7413361668586731, 'eval_rewards/rejected': -1.1163861751556396, 'eval_rewards/accuracies': 0.6602563858032227, 'eval_rewards/margins': 0.3749561905860901, 'eval_logps/chosen': -332.1538391113281, 'eval_logps/rejected': -309.70513916015625, 'eval_logits/chosen': -1.6854968070983887, 'eval_logits/rejected': -1.6314102411270142, 'eval_losses/dpo_loss': 0.6199418902397156, 'eval_values/chosen': -1.5130208730697632, 'eval_values/rejected': -1.817307710647583, 'eval_values/accuracies': 0.7115384340286255, 'eval_values/margins': 0.30393630266189575, 'eval_losses/value_loss': 0.5891926884651184, 'epoch': 0.04, 'num_input_tokens_seen': 0}
+  4%|▍         | 20/472 [09:01<3:01:41, 24.12s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A  4%|▍         | 21/472 [09:26<4:53:25, 39.04s/it]  5%|▍         | 22/472 [09:50<4:18:50, 34.51s/it]  5%|▍         | 23/472 [10:15<3:56:43, 31.63s/it]  5%|▌         | 24/472 [10:38<3:38:04, 29.21s/it]  5%|▌         | 25/472 [11:03<3:28:28, 27.98s/it]  6%|▌         | 26/472 [11:28<3:19:38, 26.86s/it]  6%|▌         | 27/472 [11:52<3:12:43, 25.99s/it]  6%|▌         | 28/472 [12:18<3:12:27, 26.01s/it]  6%|▌         | 29/472 [12:43<3:11:37, 25.95s/it]  6%|▋         | 30/472 [13:07<3:06:38, 25.34s/it]                                                  {'loss': 0.8799, 'grad_norm': 5.994475687673261, 'learning_rate': 4.6927966101694915e-07, 'rewards/chosen': -0.7793213129043579, 'rewards/rejected': -1.287744164466858, 'rewards/accuracies': 0.6773437261581421, 'rewards/margins': 0.5081726312637329, 'logps/chosen': -329.1625061035156, 'logps/rejected': -308.625, 'logits/chosen': -1.7794921398162842, 'logits/rejected': -1.734960913658142, 'losses/dpo_loss': 0.5865722894668579, 'values/chosen': -1.497656226158142, 'values/rejected': -1.8361327648162842, 'values/accuracies': 0.703906238079071, 'values/margins': 0.33833616971969604, 'losses/value_loss': 0.586132824420929, 'epoch': 0.06, 'num_input_tokens_seen': 0, 'train_runtime': 793.5142, 'train_tokens_per_second': 0.0}
+  6%|▋         | 30/472 [13:07<3:06:38, 25.34s/it]  7%|▋         | 31/472 [13:32<3:05:38, 25.26s/it]  7%|▋         | 32/472 [13:57<3:02:55, 24.94s/it]  7%|▋         | 33/472 [14:21<3:00:59, 24.74s/it]  7%|▋         | 34/472 [14:45<2:59:30, 24.59s/it]  7%|▋         | 35/472 [15:11<3:02:36, 25.07s/it]  8%|▊         | 36/472 [15:37<3:03:55, 25.31s/it]  8%|▊         | 37/472 [16:03<3:04:43, 25.48s/it]  8%|▊         | 38/472 [16:28<3:02:21, 25.21s/it]  8%|▊         | 39/472 [16:53<3:02:14, 25.25s/it]  8%|▊         | 40/472 [17:16<2:56:57, 24.58s/it]                                                  {'loss': 0.8196, 'grad_norm': 4.915198464981428, 'learning_rate': 4.5868644067796606e-07, 'rewards/chosen': -0.820019543170929, 'rewards/rejected': -1.499755859375, 'rewards/accuracies': 0.717968761920929, 'rewards/margins': 0.6797073483467102, 'logps/chosen': -333.2250061035156, 'logps/rejected': -328.5, 'logits/chosen': -1.7687499523162842, 'logits/rejected': -1.7190430164337158, 'losses/dpo_loss': 0.538330078125, 'values/chosen': -1.344970703125, 'values/rejected': -1.7921874523162842, 'values/accuracies': 0.703906238079071, 'values/margins': 0.44732666015625, 'losses/value_loss': 0.5624755620956421, 'epoch': 0.08, 'num_input_tokens_seen': 0, 'train_runtime': 1042.1789, 'train_tokens_per_second': 0.0}
+  8%|▊         | 40/472 [17:16<2:56:57, 24.58s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.48it/s][A
+  8%|▊         | 3/39 [00:02<00:32,  1.12it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.14s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:22<00:27,  1.33s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.34s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.35s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.28s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.24s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.11s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.18s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.16s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.16s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.22s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.14s/it][A
+ 97%|█████████▋| 38/39 [00:46<00:01,  1.16s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.22s/it][A                                                  
+                                               [A{'eval_loss': 0.8144691586494446, 'eval_runtime': 48.8213, 'eval_samples_per_second': 12.474, 'eval_steps_per_second': 0.799, 'eval_rewards/chosen': -0.859375, 'eval_rewards/rejected': -1.4280849695205688, 'eval_rewards/accuracies': 0.7019230723381042, 'eval_rewards/margins': 0.5688726902008057, 'eval_logps/chosen': -333.1025695800781, 'eval_logps/rejected': -313.0, 'eval_logits/chosen': -1.7628204822540283, 'eval_logits/rejected': -1.7271634340286255, 'eval_losses/dpo_loss': 0.5592948794364929, 'eval_values/chosen': -1.2422876358032227, 'eval_values/rejected': -1.7990785837173462, 'eval_values/accuracies': 0.7323718070983887, 'eval_values/margins': 0.5571719408035278, 'eval_losses/value_loss': 0.538010835647583, 'epoch': 0.08, 'num_input_tokens_seen': 0}
+  8%|▊         | 40/472 [18:05<2:56:57, 24.58s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.22s/it][A
+                                               [A  9%|▊         | 41/472 [18:29<4:41:11, 39.15s/it]  9%|▉         | 42/472 [18:54<4:09:24, 34.80s/it]  9%|▉         | 43/472 [19:16<3:41:03, 30.92s/it]  9%|▉         | 44/472 [19:41<3:27:53, 29.14s/it] 10%|▉         | 45/472 [20:06<3:20:19, 28.15s/it] 10%|▉         | 46/472 [20:32<3:14:32, 27.40s/it] 10%|▉         | 47/472 [20:58<3:11:13, 27.00s/it] 10%|█         | 48/472 [21:22<3:03:30, 25.97s/it] 10%|█         | 49/472 [21:47<3:01:28, 25.74s/it] 11%|█         | 50/472 [22:13<3:00:43, 25.69s/it]                                                  {'loss': 0.7658, 'grad_norm': 5.362601722891144, 'learning_rate': 4.480932203389831e-07, 'rewards/chosen': -0.7883056402206421, 'rewards/rejected': -1.553564429283142, 'rewards/accuracies': 0.7601562738418579, 'rewards/margins': 0.764880359172821, 'logps/chosen': -347.8999938964844, 'logps/rejected': -337.875, 'logits/chosen': -1.808691382408142, 'logits/rejected': -1.766992211341858, 'losses/dpo_loss': 0.500073254108429, 'values/chosen': -1.136132836341858, 'values/rejected': -1.7418944835662842, 'values/accuracies': 0.7367187738418579, 'values/margins': 0.6054046750068665, 'losses/value_loss': 0.531787097454071, 'epoch': 0.11, 'num_input_tokens_seen': 0, 'train_runtime': 1338.7449, 'train_tokens_per_second': 0.0}
+ 11%|█         | 50/472 [22:13<3:00:43, 25.69s/it] 11%|█         | 51/472 [22:36<2:56:21, 25.13s/it] 11%|█         | 52/472 [23:01<2:54:58, 25.00s/it] 11%|█         | 53/472 [23:25<2:52:53, 24.76s/it] 11%|█▏        | 54/472 [23:50<2:51:48, 24.66s/it] 12%|█▏        | 55/472 [24:13<2:49:32, 24.40s/it] 12%|█▏        | 56/472 [24:38<2:48:27, 24.30s/it] 12%|█▏        | 57/472 [25:03<2:49:54, 24.57s/it] 12%|█▏        | 58/472 [25:27<2:48:50, 24.47s/it] 12%|█▎        | 59/472 [25:50<2:45:28, 24.04s/it] 13%|█▎        | 60/472 [26:16<2:48:55, 24.60s/it]                                                  {'loss': 0.7449, 'grad_norm': 4.743876036066649, 'learning_rate': 4.375e-07, 'rewards/chosen': -0.7978760004043579, 'rewards/rejected': -1.6530272960662842, 'rewards/accuracies': 0.750781238079071, 'rewards/margins': 0.85498046875, 'logps/chosen': -351.63751220703125, 'logps/rejected': -344.5249938964844, 'logits/chosen': -1.8056640625, 'logits/rejected': -1.759667992591858, 'losses/dpo_loss': 0.4869628846645355, 'values/chosen': -1.003564476966858, 'values/rejected': -1.7685546875, 'values/accuracies': 0.729687511920929, 'values/margins': 0.765289306640625, 'losses/value_loss': 0.515795886516571, 'epoch': 0.13, 'num_input_tokens_seen': 0, 'train_runtime': 1582.111, 'train_tokens_per_second': 0.0}
+ 13%|█▎        | 60/472 [26:16<2:48:55, 24.60s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.48it/s][A
+  8%|▊         | 3/39 [00:02<00:32,  1.12it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.06s/it][A
+ 13%|█▎        | 5/39 [00:05<00:39,  1.15s/it][A
+ 15%|█▌        | 6/39 [00:06<00:40,  1.22s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.27s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.24s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.26s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:13<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:22<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.18s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.19s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A                                                  
+                                               [A{'eval_loss': 0.7146449089050293, 'eval_runtime': 48.6813, 'eval_samples_per_second': 12.51, 'eval_steps_per_second': 0.801, 'eval_rewards/chosen': -0.9213742017745972, 'eval_rewards/rejected': -1.8567708730697632, 'eval_rewards/accuracies': 0.7916666865348816, 'eval_rewards/margins': 0.935133695602417, 'eval_logps/chosen': -333.8717956542969, 'eval_logps/rejected': -317.3205261230469, 'eval_logits/chosen': -1.7307692766189575, 'eval_logits/rejected': -1.7011218070983887, 'eval_losses/dpo_loss': 0.4711538553237915, 'eval_values/chosen': -0.9875300526618958, 'eval_values/rejected': -1.8729968070983887, 'eval_values/accuracies': 0.7227563858032227, 'eval_values/margins': 0.8855856657028198, 'eval_losses/value_loss': 0.5043569803237915, 'epoch': 0.13, 'num_input_tokens_seen': 0}
+ 13%|█▎        | 60/472 [27:05<2:48:55, 24.60s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A
+                                               [A 13%|█▎        | 61/472 [27:29<4:28:30, 39.20s/it] 13%|█▎        | 62/472 [27:53<3:57:00, 34.68s/it] 13%|█▎        | 63/472 [28:18<3:35:56, 31.68s/it] 14%|█▎        | 64/472 [28:42<3:19:01, 29.27s/it] 14%|█▍        | 65/472 [29:06<3:07:56, 27.71s/it] 14%|█▍        | 66/472 [29:28<2:57:09, 26.18s/it] 14%|█▍        | 67/472 [29:53<2:53:59, 25.78s/it] 14%|█▍        | 68/472 [30:19<2:53:16, 25.73s/it] 15%|█▍        | 69/472 [30:44<2:51:31, 25.54s/it] 15%|█▍        | 70/472 [31:09<2:49:31, 25.30s/it]                                                  {'loss': 0.6906, 'grad_norm': 5.142065993648089, 'learning_rate': 4.269067796610169e-07, 'rewards/chosen': -0.9243408441543579, 'rewards/rejected': -1.9943358898162842, 'rewards/accuracies': 0.7875000238418579, 'rewards/margins': 1.0704834461212158, 'logps/chosen': -349.375, 'logps/rejected': -339.82501220703125, 'logits/chosen': -1.772363305091858, 'logits/rejected': -1.7521483898162842, 'losses/dpo_loss': 0.44768065214157104, 'values/chosen': -0.8160400390625, 'values/rejected': -1.7799804210662842, 'values/accuracies': 0.75, 'values/margins': 0.9638671875, 'losses/value_loss': 0.48579102754592896, 'epoch': 0.15, 'num_input_tokens_seen': 0, 'train_runtime': 1874.8116, 'train_tokens_per_second': 0.0}
+ 15%|█▍        | 70/472 [31:09<2:49:31, 25.30s/it] 15%|█▌        | 71/472 [31:34<2:50:04, 25.45s/it] 15%|█▌        | 72/472 [32:00<2:49:56, 25.49s/it] 15%|█▌        | 73/472 [32:24<2:47:10, 25.14s/it] 16%|█▌        | 74/472 [32:49<2:46:22, 25.08s/it] 16%|█▌        | 75/472 [33:14<2:45:58, 25.08s/it] 16%|█▌        | 76/472 [33:40<2:46:50, 25.28s/it] 16%|█▋        | 77/472 [34:05<2:46:28, 25.29s/it] 17%|█▋        | 78/472 [34:30<2:44:03, 24.98s/it] 17%|█▋        | 79/472 [34:54<2:42:48, 24.86s/it] 17%|█▋        | 80/472 [35:18<2:40:59, 24.64s/it]                                                  {'loss': 0.6923, 'grad_norm': 5.138094876660337, 'learning_rate': 4.1631355932203387e-07, 'rewards/chosen': -1.0579345226287842, 'rewards/rejected': -2.2342772483825684, 'rewards/accuracies': 0.7710937261581421, 'rewards/margins': 1.175195336341858, 'logps/chosen': -340.3999938964844, 'logps/rejected': -343.26251220703125, 'logits/chosen': -1.74365234375, 'logits/rejected': -1.7023437023162842, 'losses/dpo_loss': 0.44990235567092896, 'values/chosen': -0.69952392578125, 'values/rejected': -1.8000977039337158, 'values/accuracies': 0.754687488079071, 'values/margins': 1.100183129310608, 'losses/value_loss': 0.48469239473342896, 'epoch': 0.17, 'num_input_tokens_seen': 0, 'train_runtime': 2124.567, 'train_tokens_per_second': 0.0}
+ 17%|█▋        | 80/472 [35:18<2:40:59, 24.64s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.48it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.14s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.28s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.30s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.34s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.29s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.23s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.26s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.20s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.22s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:10,  1.09s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:37<00:09,  1.22s/it][A
+ 82%|████████▏ | 32/39 [00:38<00:08,  1.17s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.12s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.12s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.19s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.12s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.14s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A                                                  
+                                               [A{'eval_loss': 0.6688346862792969, 'eval_runtime': 48.4391, 'eval_samples_per_second': 12.572, 'eval_steps_per_second': 0.805, 'eval_rewards/chosen': -1.1077724695205688, 'eval_rewards/rejected': -2.3309295177459717, 'eval_rewards/accuracies': 0.7900640964508057, 'eval_rewards/margins': 1.2221554517745972, 'eval_logps/chosen': -335.9230651855469, 'eval_logps/rejected': -322.0, 'eval_logits/chosen': -1.7179486751556396, 'eval_logits/rejected': -1.6830929517745972, 'eval_losses/dpo_loss': 0.4382011294364929, 'eval_values/chosen': -0.7114382982254028, 'eval_values/rejected': -1.8839142322540283, 'eval_values/accuracies': 0.7323718070983887, 'eval_values/margins': 1.1730331182479858, 'eval_losses/value_loss': 0.4963441491127014, 'epoch': 0.17, 'num_input_tokens_seen': 0}
+ 17%|█▋        | 80/472 [36:07<2:40:59, 24.64s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A
+                                               [A 17%|█▋        | 81/472 [36:30<4:13:21, 38.88s/it] 17%|█▋        | 82/472 [36:54<3:43:26, 34.37s/it] 18%|█▊        | 83/472 [37:18<3:23:03, 31.32s/it] 18%|█▊        | 84/472 [37:44<3:10:39, 29.48s/it] 18%|█▊        | 85/472 [38:08<3:00:47, 28.03s/it] 18%|█▊        | 86/472 [38:34<2:55:36, 27.30s/it] 18%|█▊        | 87/472 [38:59<2:50:22, 26.55s/it] 19%|█▊        | 88/472 [39:24<2:47:24, 26.16s/it] 19%|█▉        | 89/472 [39:48<2:42:27, 25.45s/it] 19%|█▉        | 90/472 [40:14<2:42:34, 25.54s/it]                                                  {'loss': 0.6458, 'grad_norm': 3.9525574116270494, 'learning_rate': 4.057203389830508e-07, 'rewards/chosen': -0.9721435308456421, 'rewards/rejected': -2.3013672828674316, 'rewards/accuracies': 0.7914062738418579, 'rewards/margins': 1.3296630382537842, 'logps/chosen': -345.5874938964844, 'logps/rejected': -333.5, 'logits/chosen': -1.7667968273162842, 'logits/rejected': -1.7526366710662842, 'losses/dpo_loss': 0.4168945252895355, 'values/chosen': -0.6253280639648438, 'values/rejected': -1.8830077648162842, 'values/accuracies': 0.7671874761581421, 'values/margins': 1.257348656654358, 'losses/value_loss': 0.45758056640625, 'epoch': 0.19, 'num_input_tokens_seen': 0, 'train_runtime': 2419.7288, 'train_tokens_per_second': 0.0}
+ 19%|█▉        | 90/472 [40:14<2:42:34, 25.54s/it] 19%|█▉        | 91/472 [40:38<2:40:29, 25.27s/it] 19%|█▉        | 92/472 [41:03<2:39:23, 25.17s/it] 20%|█▉        | 93/472 [41:27<2:36:10, 24.72s/it] 20%|█▉        | 94/472 [41:51<2:35:41, 24.71s/it] 20%|██        | 95/472 [42:17<2:36:39, 24.93s/it] 20%|██        | 96/472 [42:42<2:37:16, 25.10s/it] 21%|██        | 97/472 [43:07<2:36:14, 25.00s/it] 21%|██        | 98/472 [43:32<2:34:55, 24.85s/it] 21%|██        | 99/472 [43:56<2:34:03, 24.78s/it] 21%|██        | 100/472 [44:21<2:34:10, 24.87s/it]                                                   {'loss': 0.6693, 'grad_norm': 4.296665227062465, 'learning_rate': 3.951271186440678e-07, 'rewards/chosen': -1.146093726158142, 'rewards/rejected': -2.5130858421325684, 'rewards/accuracies': 0.78125, 'rewards/margins': 1.367211937904358, 'logps/chosen': -348.3500061035156, 'logps/rejected': -339.6625061035156, 'logits/chosen': -1.762792944908142, 'logits/rejected': -1.7145507335662842, 'losses/dpo_loss': 0.43400877714157104, 'values/chosen': -0.7360259890556335, 'values/rejected': -2.060839891433716, 'values/accuracies': 0.76953125, 'values/margins': 1.324316382408142, 'losses/value_loss': 0.4704345762729645, 'epoch': 0.21, 'num_input_tokens_seen': 0, 'train_runtime': 2667.5767, 'train_tokens_per_second': 0.0}
+ 21%|██        | 100/472 [44:21<2:34:10, 24.87s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.48it/s][A
+  8%|▊         | 3/39 [00:02<00:32,  1.12it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.24s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.27s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.28s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.30s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.33s/it][A
+ 54%|█████▍    | 21/39 [00:25<00:24,  1.34s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.29s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.23s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.26s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.20s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.22s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:10,  1.09s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:37<00:09,  1.22s/it][A
+ 82%|████████▏ | 32/39 [00:38<00:08,  1.17s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.14s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.12s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.12s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.18s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.12s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.14s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A                                                   
+                                               [A{'eval_loss': 0.6496818661689758, 'eval_runtime': 48.386, 'eval_samples_per_second': 12.586, 'eval_steps_per_second': 0.806, 'eval_rewards/chosen': -1.1794872283935547, 'eval_rewards/rejected': -2.518629789352417, 'eval_rewards/accuracies': 0.7788461446762085, 'eval_rewards/margins': 1.339092493057251, 'eval_logps/chosen': -336.3333435058594, 'eval_logps/rejected': -323.76922607421875, 'eval_logits/chosen': -1.7311698198318481, 'eval_logits/rejected': -1.6969150304794312, 'eval_losses/dpo_loss': 0.4259064495563507, 'eval_values/chosen': -0.7032752633094788, 'eval_values/rejected': -1.9928885698318481, 'eval_values/accuracies': 0.7483974099159241, 'eval_values/margins': 1.2890374660491943, 'eval_losses/value_loss': 0.5016025900840759, 'epoch': 0.21, 'num_input_tokens_seen': 0}
+ 21%|██        | 100/472 [45:10<2:34:10, 24.87s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A
+                                               [A 21%|██▏       | 101/472 [45:35<4:04:15, 39.50s/it] 22%|██▏       | 102/472 [46:00<3:36:35, 35.12s/it] 22%|██▏       | 103/472 [46:22<3:12:42, 31.34s/it] 22%|██▏       | 104/472 [46:47<2:59:06, 29.20s/it] 22%|██▏       | 105/472 [47:11<2:49:26, 27.70s/it] 22%|██▏       | 106/472 [47:35<2:43:20, 26.78s/it] 23%|██▎       | 107/472 [47:59<2:37:52, 25.95s/it] 23%|██▎       | 108/472 [48:25<2:36:44, 25.84s/it] 23%|██▎       | 109/472 [48:49<2:33:43, 25.41s/it] 23%|██▎       | 110/472 [49:12<2:28:49, 24.67s/it]                                                   {'loss': 0.6827, 'grad_norm': 4.513800753703702, 'learning_rate': 3.845338983050847e-07, 'rewards/chosen': -1.0114257335662842, 'rewards/rejected': -2.32421875, 'rewards/accuracies': 0.7828124761581421, 'rewards/margins': 1.3129394054412842, 'logps/chosen': -348.45001220703125, 'logps/rejected': -325.125, 'logits/chosen': -1.779394507408142, 'logits/rejected': -1.784765601158142, 'losses/dpo_loss': 0.44061279296875, 'values/chosen': -0.651763916015625, 'values/rejected': -1.9357421398162842, 'values/accuracies': 0.762499988079071, 'values/margins': 1.2834961414337158, 'losses/value_loss': 0.484619140625, 'epoch': 0.23, 'num_input_tokens_seen': 0, 'train_runtime': 2958.6102, 'train_tokens_per_second': 0.0}
+ 23%|██▎       | 110/472 [49:12<2:28:49, 24.67s/it] 24%|██▎       | 111/472 [49:36<2:26:38, 24.37s/it] 24%|██▎       | 112/472 [50:02<2:28:53, 24.81s/it] 24%|██▍       | 113/472 [50:27<2:28:17, 24.78s/it] 24%|██▍       | 114/472 [50:52<2:28:15, 24.85s/it] 24%|██▍       | 115/472 [51:15<2:25:31, 24.46s/it] 25%|██▍       | 116/472 [51:40<2:25:32, 24.53s/it] 25%|██▍       | 117/472 [52:04<2:23:59, 24.34s/it] 25%|██▌       | 118/472 [52:30<2:26:19, 24.80s/it] 25%|██▌       | 119/472 [52:53<2:23:57, 24.47s/it] 25%|██▌       | 120/472 [53:19<2:25:15, 24.76s/it]                                                   {'loss': 0.6269, 'grad_norm': 5.746640558289651, 'learning_rate': 3.739406779661017e-07, 'rewards/chosen': -0.8902862668037415, 'rewards/rejected': -2.29833984375, 'rewards/accuracies': 0.807812511920929, 'rewards/margins': 1.408056616783142, 'logps/chosen': -329.0249938964844, 'logps/rejected': -327.23748779296875, 'logits/chosen': -1.795507788658142, 'logits/rejected': -1.73046875, 'losses/dpo_loss': 0.4070068299770355, 'values/chosen': -0.5737152099609375, 'values/rejected': -1.942968726158142, 'values/accuracies': 0.7867187261581421, 'values/margins': 1.3694579601287842, 'losses/value_loss': 0.43983155488967896, 'epoch': 0.25, 'num_input_tokens_seen': 0, 'train_runtime': 3205.0005, 'train_tokens_per_second': 0.0}
+ 25%|██▌       | 120/472 [53:19<2:25:15, 24.76s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.50it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.14it/s][A
+ 10%|█         | 4/39 [00:03<00:35,  1.02s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.12s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.20s/it][A
+ 18%|█▊        | 7/39 [00:07<00:39,  1.25s/it][A
+ 21%|██        | 8/39 [00:08<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.24s/it][A
+ 26%|██▌       | 10/39 [00:11<00:35,  1.24s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.26s/it][A
+ 33%|███▎      | 13/39 [00:15<00:32,  1.27s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.22s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.25s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.28s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.30s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:25<00:24,  1.34s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.23s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:37<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:38<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.19s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                   
+                                               [A{'eval_loss': 0.639085590839386, 'eval_runtime': 48.4447, 'eval_samples_per_second': 12.571, 'eval_steps_per_second': 0.805, 'eval_rewards/chosen': -1.015474796295166, 'eval_rewards/rejected': -2.4433093070983887, 'eval_rewards/accuracies': 0.7788461446762085, 'eval_rewards/margins': 1.428485631942749, 'eval_logps/chosen': -334.79486083984375, 'eval_logps/rejected': -323.30767822265625, 'eval_logits/chosen': -1.7261618375778198, 'eval_logits/rejected': -1.6895031929016113, 'eval_losses/dpo_loss': 0.4212239682674408, 'eval_values/chosen': -0.7091346383094788, 'eval_values/rejected': -2.021981954574585, 'eval_values/accuracies': 0.7419871687889099, 'eval_values/margins': 1.312762975692749, 'eval_losses/value_loss': 0.4986478388309479, 'epoch': 0.25, 'num_input_tokens_seen': 0}
+ 25%|██▌       | 120/472 [54:07<2:25:15, 24.76s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 26%|██▌       | 121/472 [54:32<3:49:19, 39.20s/it] 26%|██▌       | 122/472 [54:55<3:21:02, 34.46s/it] 26%|██▌       | 123/472 [55:21<3:05:12, 31.84s/it] 26%|██▋       | 124/472 [55:46<2:53:15, 29.87s/it] 26%|██▋       | 125/472 [56:11<2:43:46, 28.32s/it] 27%|██▋       | 126/472 [56:36<2:37:13, 27.26s/it] 27%|██▋       | 127/472 [57:00<2:31:23, 26.33s/it] 27%|██▋       | 128/472 [57:22<2:24:46, 25.25s/it] 27%|██▋       | 129/472 [57:48<2:24:44, 25.32s/it] 28%|██▊       | 130/472 [58:13<2:23:32, 25.18s/it]                                                   {'loss': 0.6364, 'grad_norm': 4.2893527658572195, 'learning_rate': 3.633474576271186e-07, 'rewards/chosen': -1.021264672279358, 'rewards/rejected': -2.470507860183716, 'rewards/accuracies': 0.793749988079071, 'rewards/margins': 1.4500000476837158, 'logps/chosen': -344.8125, 'logps/rejected': -335.0, 'logits/chosen': -1.7653319835662842, 'logits/rejected': -1.7102539539337158, 'losses/dpo_loss': 0.40955811738967896, 'values/chosen': -0.6835387945175171, 'values/rejected': -2.0220704078674316, 'values/accuracies': 0.7828124761581421, 'values/margins': 1.3376038074493408, 'losses/value_loss': 0.4535156190395355, 'epoch': 0.28, 'num_input_tokens_seen': 0, 'train_runtime': 3499.0261, 'train_tokens_per_second': 0.0}
+ 28%|██▊       | 130/472 [58:13<2:23:32, 25.18s/it] 28%|██▊       | 131/472 [58:38<2:22:30, 25.07s/it] 28%|██▊       | 132/472 [59:03<2:23:12, 25.27s/it] 28%|██▊       | 133/472 [59:26<2:19:00, 24.60s/it] 28%|██▊       | 134/472 [59:51<2:19:09, 24.70s/it] 29%|██▊       | 135/472 [1:00:16<2:18:27, 24.65s/it] 29%|██▉       | 136/472 [1:00:41<2:18:19, 24.70s/it] 29%|██▉       | 137/472 [1:01:06<2:19:29, 24.98s/it] 29%|██▉       | 138/472 [1:01:32<2:19:47, 25.11s/it] 29%|██▉       | 139/472 [1:01:58<2:21:05, 25.42s/it] 30%|██▉       | 140/472 [1:02:22<2:17:55, 24.93s/it]                                                     {'loss': 0.5971, 'grad_norm': 3.4922177640016097, 'learning_rate': 3.5275423728813556e-07, 'rewards/chosen': -1.2043945789337158, 'rewards/rejected': -2.8765625953674316, 'rewards/accuracies': 0.8101562261581421, 'rewards/margins': 1.672509789466858, 'logps/chosen': -352.8125, 'logps/rejected': -343.2875061035156, 'logits/chosen': -1.7838866710662842, 'logits/rejected': -1.7546875476837158, 'losses/dpo_loss': 0.3837890625, 'values/chosen': -0.674609363079071, 'values/rejected': -2.10400390625, 'values/accuracies': 0.7992187738418579, 'values/margins': 1.43017578125, 'losses/value_loss': 0.42670899629592896, 'epoch': 0.3, 'num_input_tokens_seen': 0, 'train_runtime': 3747.8771, 'train_tokens_per_second': 0.0}
+ 30%|██▉       | 140/472 [1:02:22<2:17:55, 24.93s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.14s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.28s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.12s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.19s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.14s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A                                                     
+                                               [A{'eval_loss': 0.6339991092681885, 'eval_runtime': 48.5751, 'eval_samples_per_second': 12.537, 'eval_steps_per_second': 0.803, 'eval_rewards/chosen': -1.4653445482254028, 'eval_rewards/rejected': -2.9859776496887207, 'eval_rewards/accuracies': 0.7708333134651184, 'eval_rewards/margins': 1.5191806554794312, 'eval_logps/chosen': -339.23077392578125, 'eval_logps/rejected': -328.525634765625, 'eval_logits/chosen': -1.7522035837173462, 'eval_logits/rejected': -1.7185497283935547, 'eval_losses/dpo_loss': 0.42823517322540283, 'eval_values/chosen': -0.7455241084098816, 'eval_values/rejected': -2.0822064876556396, 'eval_values/accuracies': 0.7516025900840759, 'eval_values/margins': 1.3362880945205688, 'eval_losses/value_loss': 0.49025940895080566, 'epoch': 0.3, 'num_input_tokens_seen': 0}
+ 30%|██▉       | 140/472 [1:03:10<2:17:55, 24.93s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A
+                                               [A 30%|██▉       | 141/472 [1:03:35<3:37:56, 39.51s/it] 30%|███       | 142/472 [1:04:00<3:13:08, 35.12s/it] 30%|███       | 143/472 [1:04:25<2:55:53, 32.08s/it] 31%|███       | 144/472 [1:04:51<2:44:31, 30.10s/it] 31%|███       | 145/472 [1:05:16<2:35:41, 28.57s/it] 31%|███       | 146/472 [1:05:41<2:30:57, 27.78s/it] 31%|███       | 147/472 [1:06:07<2:26:24, 27.03s/it] 31%|███▏      | 148/472 [1:06:32<2:23:26, 26.56s/it] 32%|███▏      | 149/472 [1:06:57<2:20:48, 26.16s/it] 32%|███▏      | 150/472 [1:07:22<2:18:30, 25.81s/it]                                                     {'loss': 0.6196, 'grad_norm': 3.9743550485079586, 'learning_rate': 3.421610169491525e-07, 'rewards/chosen': -1.265966773033142, 'rewards/rejected': -2.83740234375, 'rewards/accuracies': 0.809374988079071, 'rewards/margins': 1.5722167491912842, 'logps/chosen': -354.1625061035156, 'logps/rejected': -346.6625061035156, 'logits/chosen': -1.784570336341858, 'logits/rejected': -1.7639648914337158, 'losses/dpo_loss': 0.4008422791957855, 'values/chosen': -0.4830161929130554, 'values/rejected': -1.9539062976837158, 'values/accuracies': 0.776562511920929, 'values/margins': 1.470068335533142, 'losses/value_loss': 0.43731689453125, 'epoch': 0.32, 'num_input_tokens_seen': 0, 'train_runtime': 4048.644, 'train_tokens_per_second': 0.0}
+ 32%|███▏      | 150/472 [1:07:22<2:18:30, 25.81s/it] 32%|███▏      | 151/472 [1:07:46<2:14:58, 25.23s/it] 32%|███▏      | 152/472 [1:08:11<2:13:30, 25.03s/it] 32%|███▏      | 153/472 [1:08:34<2:09:31, 24.36s/it] 33%|███▎      | 154/472 [1:08:59<2:10:59, 24.72s/it] 33%|███▎      | 155/472 [1:09:25<2:11:51, 24.96s/it] 33%|███▎      | 156/472 [1:09:50<2:12:42, 25.20s/it] 33%|███▎      | 157/472 [1:10:16<2:12:30, 25.24s/it] 33%|███▎      | 158/472 [1:10:41<2:11:42, 25.17s/it] 34%|███▎      | 159/472 [1:11:06<2:11:18, 25.17s/it] 34%|███▍      | 160/472 [1:11:28<2:06:16, 24.28s/it]                                                     {'loss': 0.6185, 'grad_norm': 4.127041902749112, 'learning_rate': 3.315677966101695e-07, 'rewards/chosen': -1.171240210533142, 'rewards/rejected': -2.796679735183716, 'rewards/accuracies': 0.809374988079071, 'rewards/margins': 1.6240234375, 'logps/chosen': -349.9624938964844, 'logps/rejected': -341.45001220703125, 'logits/chosen': -1.774804711341858, 'logits/rejected': -1.725488305091858, 'losses/dpo_loss': 0.3995727598667145, 'values/chosen': -0.1476188600063324, 'values/rejected': -1.7588379383087158, 'values/accuracies': 0.7945312261581421, 'values/margins': 1.61181640625, 'losses/value_loss': 0.43785399198532104, 'epoch': 0.34, 'num_input_tokens_seen': 0, 'train_runtime': 4294.441, 'train_tokens_per_second': 0.0}
+ 34%|███▍      | 160/472 [1:11:28<2:06:16, 24.28s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.33s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.34s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.35s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.28s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.24s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.22s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.11s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.18s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.16s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.15s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.21s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.14s/it][A
+ 97%|█████████▋| 38/39 [00:46<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                     
+                                               [A{'eval_loss': 0.6187461614608765, 'eval_runtime': 48.7553, 'eval_samples_per_second': 12.491, 'eval_steps_per_second': 0.8, 'eval_rewards/chosen': -1.243088960647583, 'eval_rewards/rejected': -2.8770031929016113, 'eval_rewards/accuracies': 0.7836538553237915, 'eval_rewards/margins': 1.6357171535491943, 'eval_logps/chosen': -336.974365234375, 'eval_logps/rejected': -327.4102478027344, 'eval_logits/chosen': -1.7377804517745972, 'eval_logits/rejected': -1.701923131942749, 'eval_losses/dpo_loss': 0.4150390625, 'eval_values/chosen': -0.05199412629008293, 'eval_values/rejected': -1.6263021230697632, 'eval_values/accuracies': 0.7532051205635071, 'eval_values/margins': 1.5749073028564453, 'eval_losses/value_loss': 0.4965444803237915, 'epoch': 0.34, 'num_input_tokens_seen': 0}
+ 34%|███▍      | 160/472 [1:12:17<2:06:16, 24.28s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 34%|███▍      | 161/472 [1:12:41<3:21:14, 38.83s/it] 34%|███▍      | 162/472 [1:13:05<2:58:23, 34.53s/it] 35%|███▍      | 163/472 [1:13:30<2:41:42, 31.40s/it] 35%|███▍      | 164/472 [1:13:55<2:31:49, 29.58s/it] 35%|███▍      | 165/472 [1:14:18<2:22:07, 27.78s/it] 35%|███▌      | 166/472 [1:14:43<2:16:18, 26.73s/it] 35%|███▌      | 167/472 [1:15:07<2:11:36, 25.89s/it] 36%|███▌      | 168/472 [1:15:30<2:07:12, 25.11s/it] 36%|███▌      | 169/472 [1:15:56<2:08:30, 25.45s/it] 36%|███▌      | 170/472 [1:16:22<2:08:22, 25.50s/it]                                                     {'loss': 0.6465, 'grad_norm': 5.8355644374427085, 'learning_rate': 3.209745762711864e-07, 'rewards/chosen': -1.1934082508087158, 'rewards/rejected': -2.8243165016174316, 'rewards/accuracies': 0.789843738079071, 'rewards/margins': 1.630615234375, 'logps/chosen': -344.5249938964844, 'logps/rejected': -342.98748779296875, 'logits/chosen': -1.7697265148162842, 'logits/rejected': -1.716406226158142, 'losses/dpo_loss': 0.4171386659145355, 'values/chosen': 0.047917939722537994, 'values/rejected': -1.537316918373108, 'values/accuracies': 0.7875000238418579, 'values/margins': 1.5847289562225342, 'losses/value_loss': 0.45893555879592896, 'epoch': 0.36, 'num_input_tokens_seen': 0, 'train_runtime': 4588.0674, 'train_tokens_per_second': 0.0}
+ 36%|███▌      | 170/472 [1:16:22<2:08:22, 25.50s/it] 36%|███▌      | 171/472 [1:16:48<2:08:34, 25.63s/it] 36%|███▋      | 172/472 [1:17:13<2:07:07, 25.43s/it] 37%|███▋      | 173/472 [1:17:39<2:07:57, 25.68s/it] 37%|███▋      | 174/472 [1:18:04<2:06:18, 25.43s/it] 37%|███▋      | 175/472 [1:18:30<2:06:22, 25.53s/it] 37%|███▋      | 176/472 [1:18:55<2:05:20, 25.41s/it] 38%|███▊      | 177/472 [1:19:20<2:04:48, 25.38s/it] 38%|███▊      | 178/472 [1:19:46<2:05:17, 25.57s/it] 38%|███▊      | 179/472 [1:20:12<2:05:50, 25.77s/it] 38%|███▊      | 180/472 [1:20:38<2:04:51, 25.66s/it]                                                     {'loss': 0.6031, 'grad_norm': 4.687414178579752, 'learning_rate': 3.103813559322034e-07, 'rewards/chosen': -1.029077172279358, 'rewards/rejected': -2.6913084983825684, 'rewards/accuracies': 0.7992187738418579, 'rewards/margins': 1.662695288658142, 'logps/chosen': -357.73748779296875, 'logps/rejected': -351.38751220703125, 'logits/chosen': -1.754785180091858, 'logits/rejected': -1.716406226158142, 'losses/dpo_loss': 0.40178221464157104, 'values/chosen': 0.18292236328125, 'values/rejected': -1.465307593345642, 'values/accuracies': 0.809374988079071, 'values/margins': 1.648095726966858, 'losses/value_loss': 0.40283203125, 'epoch': 0.38, 'num_input_tokens_seen': 0, 'train_runtime': 4843.9042, 'train_tokens_per_second': 0.0}
+ 38%|███▊      | 180/472 [1:20:38<2:04:51, 25.66s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:35,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.24s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.27s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.28s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:17,  1.36s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:15,  1.27s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.27s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.13s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.20s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.24s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.19s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.16s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:44<00:03,  1.20s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:46<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                     
+                                               [A{'eval_loss': 0.6146603226661682, 'eval_runtime': 48.8593, 'eval_samples_per_second': 12.464, 'eval_steps_per_second': 0.798, 'eval_rewards/chosen': -1.1139322519302368, 'eval_rewards/rejected': -2.7401843070983887, 'eval_rewards/accuracies': 0.7788461446762085, 'eval_rewards/margins': 1.6262520551681519, 'eval_logps/chosen': -335.6153869628906, 'eval_logps/rejected': -326.05126953125, 'eval_logits/chosen': -1.7457932233810425, 'eval_logits/rejected': -1.7111377716064453, 'eval_losses/dpo_loss': 0.41411256790161133, 'eval_values/chosen': 0.006543281953781843, 'eval_values/rejected': -1.5257412195205688, 'eval_values/accuracies': 0.7564102411270142, 'eval_values/margins': 1.5314315557479858, 'eval_losses/value_loss': 0.48850661516189575, 'epoch': 0.38, 'num_input_tokens_seen': 0}
+ 38%|███▊      | 180/472 [1:21:27<2:04:51, 25.66s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 38%|███▊      | 181/472 [1:21:51<3:13:57, 39.99s/it] 39%|███▊      | 182/472 [1:22:16<2:51:06, 35.40s/it] 39%|███▉      | 183/472 [1:22:41<2:36:18, 32.45s/it] 39%|███▉      | 184/472 [1:23:05<2:23:45, 29.95s/it] 39%|███▉      | 185/472 [1:23:32<2:17:57, 28.84s/it] 39%|███▉      | 186/472 [1:23:57<2:11:57, 27.68s/it] 40%|███▉      | 187/472 [1:24:22<2:08:23, 27.03s/it] 40%|███▉      | 188/472 [1:24:48<2:06:23, 26.70s/it] 40%|████      | 189/472 [1:25:13<2:03:05, 26.10s/it] 40%|████      | 190/472 [1:25:37<2:00:18, 25.60s/it]                                                     {'loss': 0.6, 'grad_norm': 4.149430723454764, 'learning_rate': 2.997881355932203e-07, 'rewards/chosen': -1.003271460533142, 'rewards/rejected': -2.71142578125, 'rewards/accuracies': 0.8062499761581421, 'rewards/margins': 1.7083251476287842, 'logps/chosen': -354.04998779296875, 'logps/rejected': -346.92498779296875, 'logits/chosen': -1.7536132335662842, 'logits/rejected': -1.70458984375, 'losses/dpo_loss': 0.3872436583042145, 'values/chosen': -0.046393584460020065, 'values/rejected': -1.603979468345642, 'values/accuracies': 0.78515625, 'values/margins': 1.556921362876892, 'losses/value_loss': 0.42584228515625, 'epoch': 0.4, 'num_input_tokens_seen': 0, 'train_runtime': 5143.5105, 'train_tokens_per_second': 0.0}
+ 40%|████      | 190/472 [1:25:37<2:00:18, 25.60s/it] 40%|████      | 191/472 [1:26:01<1:56:43, 24.92s/it] 41%|████      | 192/472 [1:26:25<1:55:56, 24.84s/it] 41%|████      | 193/472 [1:26:50<1:55:13, 24.78s/it] 41%|████      | 194/472 [1:27:16<1:55:58, 25.03s/it] 41%|████▏     | 195/472 [1:27:41<1:55:48, 25.09s/it] 42%|████▏     | 196/472 [1:28:06<1:55:15, 25.06s/it] 42%|████▏     | 197/472 [1:28:30<1:54:00, 24.87s/it] 42%|████▏     | 198/472 [1:28:54<1:51:47, 24.48s/it] 42%|████▏     | 199/472 [1:29:19<1:51:55, 24.60s/it] 42%|████▏     | 200/472 [1:29:41<1:48:55, 24.03s/it]                                                     {'loss': 0.6267, 'grad_norm': 4.413944058867847, 'learning_rate': 2.8919491525423726e-07, 'rewards/chosen': -1.1524536609649658, 'rewards/rejected': -2.757031202316284, 'rewards/accuracies': 0.796875, 'rewards/margins': 1.603515625, 'logps/chosen': -336.3125, 'logps/rejected': -334.61248779296875, 'logits/chosen': -1.8048827648162842, 'logits/rejected': -1.757910132408142, 'losses/dpo_loss': 0.4097900390625, 'values/chosen': -0.23433876037597656, 'values/rejected': -1.767919898033142, 'values/accuracies': 0.789843738079071, 'values/margins': 1.534326195716858, 'losses/value_loss': 0.43403321504592896, 'epoch': 0.42, 'num_input_tokens_seen': 0, 'train_runtime': 5387.5372, 'train_tokens_per_second': 0.0}
+ 42%|████▏     | 200/472 [1:29:41<1:48:55, 24.03s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.48it/s][A
+  8%|▊         | 3/39 [00:02<00:36,  1.02s/it][A
+ 10%|█         | 4/39 [00:04<00:38,  1.11s/it][A
+ 13%|█▎        | 5/39 [00:05<00:40,  1.19s/it][A
+ 15%|█▌        | 6/39 [00:06<00:41,  1.25s/it][A
+ 18%|█▊        | 7/39 [00:08<00:41,  1.28s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.25s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.26s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.26s/it][A
+ 28%|██▊       | 11/39 [00:13<00:36,  1.29s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.28s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:18<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:22<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:25<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.34s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.29s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.23s/it][A
+ 64%|██████▍   | 25/39 [00:31<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.26s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.20s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.22s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:10,  1.09s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.22s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.17s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.12s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.12s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.19s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.12s/it][A
+ 97%|█████████▋| 38/39 [00:46<00:01,  1.14s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A                                                     
+                                               [A{'eval_loss': 0.6073545217514038, 'eval_runtime': 48.7502, 'eval_samples_per_second': 12.492, 'eval_steps_per_second': 0.8, 'eval_rewards/chosen': -1.175029993057251, 'eval_rewards/rejected': -2.8319311141967773, 'eval_rewards/accuracies': 0.7996794581413269, 'eval_rewards/margins': 1.6578024625778198, 'eval_logps/chosen': -336.30767822265625, 'eval_logps/rejected': -327.05126953125, 'eval_logits/chosen': -1.7431890964508057, 'eval_logits/rejected': -1.7099359035491943, 'eval_losses/dpo_loss': 0.41334885358810425, 'eval_values/chosen': -0.41990935802459717, 'eval_values/rejected': -1.918870210647583, 'eval_values/accuracies': 0.7564102411270142, 'eval_values/margins': 1.4982596635818481, 'eval_losses/value_loss': 0.4844501316547394, 'epoch': 0.42, 'num_input_tokens_seen': 0}
+ 42%|████▏     | 200/472 [1:30:30<1:48:55, 24.03s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A
+                                               [A 43%|████▎     | 201/472 [1:30:54<2:53:54, 38.51s/it] 43%|████▎     | 202/472 [1:31:19<2:35:01, 34.45s/it] 43%|████▎     | 203/472 [1:31:42<2:19:41, 31.16s/it] 43%|████▎     | 204/472 [1:32:06<2:09:40, 29.03s/it] 43%|████▎     | 205/472 [1:32:30<2:02:44, 27.58s/it] 44%|████▎     | 206/472 [1:32:56<1:59:10, 26.88s/it] 44%|████▍     | 207/472 [1:33:20<1:55:37, 26.18s/it] 44%|████▍     | 208/472 [1:33:44<1:51:53, 25.43s/it] 44%|████▍     | 209/472 [1:34:09<1:50:45, 25.27s/it] 44%|████▍     | 210/472 [1:34:35<1:51:10, 25.46s/it]                                                     {'loss': 0.6304, 'grad_norm': 4.335096886893186, 'learning_rate': 2.786016949152542e-07, 'rewards/chosen': -1.049414038658142, 'rewards/rejected': -2.7466797828674316, 'rewards/accuracies': 0.7945312261581421, 'rewards/margins': 1.6974976062774658, 'logps/chosen': -357.4750061035156, 'logps/rejected': -349.4125061035156, 'logits/chosen': -1.786523461341858, 'logits/rejected': -1.7531249523162842, 'losses/dpo_loss': 0.4075256288051605, 'values/chosen': -0.45444220304489136, 'values/rejected': -1.9719727039337158, 'values/accuracies': 0.782031238079071, 'values/margins': 1.5167725086212158, 'losses/value_loss': 0.44554442167282104, 'epoch': 0.45, 'num_input_tokens_seen': 0, 'train_runtime': 5680.8326, 'train_tokens_per_second': 0.0}
+ 44%|████▍     | 210/472 [1:34:35<1:51:10, 25.46s/it] 45%|████▍     | 211/472 [1:35:00<1:50:53, 25.49s/it] 45%|████▍     | 212/472 [1:35:24<1:48:06, 24.95s/it] 45%|████▌     | 213/472 [1:35:49<1:47:37, 24.93s/it] 45%|████▌     | 214/472 [1:36:12<1:45:34, 24.55s/it] 46%|████▌     | 215/472 [1:36:37<1:45:14, 24.57s/it] 46%|████▌     | 216/472 [1:37:01<1:44:18, 24.45s/it] 46%|████▌     | 217/472 [1:37:26<1:44:52, 24.68s/it] 46%|████▌     | 218/472 [1:37:51<1:44:33, 24.70s/it] 46%|████▋     | 219/472 [1:38:16<1:44:33, 24.80s/it] 47%|████▋     | 220/472 [1:38:41<1:43:58, 24.76s/it]                                                     {'loss': 0.5722, 'grad_norm': 3.6323374338474683, 'learning_rate': 2.680084745762712e-07, 'rewards/chosen': -1.016271948814392, 'rewards/rejected': -2.803515672683716, 'rewards/accuracies': 0.827343761920929, 'rewards/margins': 1.787695288658142, 'logps/chosen': -342.23748779296875, 'logps/rejected': -345.23748779296875, 'logits/chosen': -1.7659180164337158, 'logits/rejected': -1.71826171875, 'losses/dpo_loss': 0.36333006620407104, 'values/chosen': -0.4153207838535309, 'values/rejected': -1.966210961341858, 'values/accuracies': 0.793749988079071, 'values/margins': 1.549902319908142, 'losses/value_loss': 0.41778564453125, 'epoch': 0.47, 'num_input_tokens_seen': 0, 'train_runtime': 5927.0572, 'train_tokens_per_second': 0.0}
+ 47%|████▋     | 220/472 [1:38:41<1:43:58, 24.76s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.24s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.34s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.28s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.24s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.11s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.21s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:10,  1.25s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.20s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:07,  1.17s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.14s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.20s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:46<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                     
+                                               [A{'eval_loss': 0.6056227087974548, 'eval_runtime': 48.7518, 'eval_samples_per_second': 12.492, 'eval_steps_per_second': 0.8, 'eval_rewards/chosen': -1.1675680875778198, 'eval_rewards/rejected': -2.8369390964508057, 'eval_rewards/accuracies': 0.7884615659713745, 'eval_rewards/margins': 1.6705728769302368, 'eval_logps/chosen': -336.1025695800781, 'eval_logps/rejected': -327.0769348144531, 'eval_logits/chosen': -1.7345752716064453, 'eval_logits/rejected': -1.7017227411270142, 'eval_losses/dpo_loss': 0.41266027092933655, 'eval_values/chosen': -0.5104448199272156, 'eval_values/rejected': -1.9564303159713745, 'eval_values/accuracies': 0.7660256624221802, 'eval_values/margins': 1.4462765455245972, 'eval_losses/value_loss': 0.48147034645080566, 'epoch': 0.47, 'num_input_tokens_seen': 0}
+ 47%|████▋     | 220/472 [1:39:30<1:43:58, 24.76s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 47%|████▋     | 221/472 [1:39:56<2:46:22, 39.77s/it] 47%|████▋     | 222/472 [1:40:21<2:27:42, 35.45s/it] 47%|████▋     | 223/472 [1:40:45<2:13:24, 32.15s/it] 47%|████▋     | 224/472 [1:41:11<2:04:36, 30.15s/it] 48%|████▊     | 225/472 [1:41:37<1:58:33, 28.80s/it] 48%|████▊     | 226/472 [1:42:02<1:54:26, 27.91s/it] 48%|████▊     | 227/472 [1:42:26<1:48:40, 26.61s/it] 48%|████▊     | 228/472 [1:42:51<1:45:51, 26.03s/it] 49%|████▊     | 229/472 [1:43:16<1:45:04, 25.94s/it] 49%|████▊     | 230/472 [1:43:42<1:44:29, 25.91s/it]                                                     {'loss': 0.5983, 'grad_norm': 5.034159084024509, 'learning_rate': 2.574152542372881e-07, 'rewards/chosen': -1.1378905773162842, 'rewards/rejected': -2.89306640625, 'rewards/accuracies': 0.817187488079071, 'rewards/margins': 1.7556641101837158, 'logps/chosen': -343.13751220703125, 'logps/rejected': -337.8999938964844, 'logits/chosen': -1.7800781726837158, 'logits/rejected': -1.775976538658142, 'losses/dpo_loss': 0.38331300020217896, 'values/chosen': -0.4110885560512543, 'values/rejected': -1.916967749595642, 'values/accuracies': 0.7914062738418579, 'values/margins': 1.5065429210662842, 'losses/value_loss': 0.4300903379917145, 'epoch': 0.49, 'num_input_tokens_seen': 0, 'train_runtime': 6228.4727, 'train_tokens_per_second': 0.0}
+ 49%|████▊     | 230/472 [1:43:42<1:44:29, 25.91s/it] 49%|████▉     | 231/472 [1:44:07<1:42:10, 25.44s/it] 49%|████▉     | 232/472 [1:44:32<1:41:46, 25.44s/it] 49%|████▉     | 233/472 [1:44:57<1:40:27, 25.22s/it] 50%|████▉     | 234/472 [1:45:22<1:39:42, 25.14s/it] 50%|████▉     | 235/472 [1:45:47<1:39:58, 25.31s/it] 50%|█████     | 236/472 [1:46:12<1:38:08, 24.95s/it] 50%|█████     | 237/472 [1:46:37<1:38:11, 25.07s/it] 50%|█████     | 238/472 [1:47:01<1:36:43, 24.80s/it] 51%|█████     | 239/472 [1:47:24<1:34:02, 24.22s/it] 51%|█████     | 240/472 [1:47:50<1:35:38, 24.73s/it]                                                     {'loss': 0.5697, 'grad_norm': 5.203291437058471, 'learning_rate': 2.4682203389830507e-07, 'rewards/chosen': -1.173071265220642, 'rewards/rejected': -2.991015672683716, 'rewards/accuracies': 0.8218749761581421, 'rewards/margins': 1.818115234375, 'logps/chosen': -346.82501220703125, 'logps/rejected': -345.75, 'logits/chosen': -1.75439453125, 'logits/rejected': -1.677343726158142, 'losses/dpo_loss': 0.3680175840854645, 'values/chosen': -0.2844482362270355, 'values/rejected': -1.8898437023162842, 'values/accuracies': 0.8062499761581421, 'values/margins': 1.605224609375, 'losses/value_loss': 0.40306395292282104, 'epoch': 0.51, 'num_input_tokens_seen': 0, 'train_runtime': 6476.0561, 'train_tokens_per_second': 0.0}
+ 51%|█████     | 240/472 [1:47:50<1:35:38, 24.73s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.50it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.14it/s][A
+ 10%|█         | 4/39 [00:03<00:35,  1.02s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.20s/it][A
+ 18%|█▊        | 7/39 [00:07<00:39,  1.25s/it][A
+ 21%|██        | 8/39 [00:08<00:37,  1.22s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.24s/it][A
+ 26%|██▌       | 10/39 [00:11<00:35,  1.24s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.27s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.26s/it][A
+ 33%|███▎      | 13/39 [00:15<00:32,  1.27s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.22s/it][A
+ 38%|███▊      | 15/39 [00:17<00:29,  1.25s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.27s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.30s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.31s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.32s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.33s/it][A
+ 54%|█████▍    | 21/39 [00:25<00:24,  1.34s/it][A
+ 56%|█████▋    | 22/39 [00:26<00:21,  1.26s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.29s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.23s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.22s/it][A
+ 67%|██████▋   | 26/39 [00:31<00:16,  1.26s/it][A
+ 69%|██████▉   | 27/39 [00:32<00:14,  1.20s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.22s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:10,  1.09s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.16s/it][A
+ 79%|███████▉  | 31/39 [00:37<00:09,  1.22s/it][A
+ 82%|████████▏ | 32/39 [00:38<00:08,  1.17s/it][A
+ 85%|████████▍ | 33/39 [00:39<00:06,  1.14s/it][A
+ 87%|████████▋ | 34/39 [00:40<00:05,  1.12s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.12s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.18s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.12s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.13s/it][A
+100%|██████████| 39/39 [00:46<00:00,  1.19s/it][A                                                     
+                                               [A{'eval_loss': 0.5931214094161987, 'eval_runtime': 48.1602, 'eval_samples_per_second': 12.645, 'eval_steps_per_second': 0.81, 'eval_rewards/chosen': -1.2645232677459717, 'eval_rewards/rejected': -3.0088140964508057, 'eval_rewards/accuracies': 0.7948718070983887, 'eval_rewards/margins': 1.7445412874221802, 'eval_logps/chosen': -337.1794738769531, 'eval_logps/rejected': -328.79486083984375, 'eval_logits/chosen': -1.7299679517745972, 'eval_logits/rejected': -1.6973156929016113, 'eval_losses/dpo_loss': 0.40412160754203796, 'eval_values/chosen': -0.07730650156736374, 'eval_values/rejected': -1.6383212804794312, 'eval_values/accuracies': 0.7612179517745972, 'eval_values/margins': 1.5605844259262085, 'eval_losses/value_loss': 0.47516027092933655, 'epoch': 0.51, 'num_input_tokens_seen': 0}
+ 51%|█████     | 240/472 [1:48:38<1:35:38, 24.73s/it]
+100%|██████████| 39/39 [00:46<00:00,  1.19s/it][A
+                                               [A 51%|█████     | 241/472 [1:49:03<2:31:01, 39.23s/it] 51%|█████▏    | 242/472 [1:49:27<2:13:24, 34.80s/it] 51%|█████▏    | 243/472 [1:49:52<2:01:23, 31.80s/it] 52%|█████▏    | 244/472 [1:50:17<1:52:33, 29.62s/it] 52%|█████▏    | 245/472 [1:50:42<1:47:02, 28.29s/it] 52%|█████▏    | 246/472 [1:51:07<1:43:17, 27.42s/it] 52%|█████▏    | 247/472 [1:51:31<1:39:09, 26.44s/it] 53%|█████▎    | 248/472 [1:51:56<1:37:02, 25.99s/it] 53%|█████▎    | 249/472 [1:52:22<1:36:28, 25.96s/it] 53%|█████▎    | 250/472 [1:52:48<1:35:20, 25.77s/it]                                                     {'loss': 0.587, 'grad_norm': 5.51881436081241, 'learning_rate': 2.3622881355932203e-07, 'rewards/chosen': -1.188513159751892, 'rewards/rejected': -3.037304639816284, 'rewards/accuracies': 0.8109375238418579, 'rewards/margins': 1.8494141101837158, 'logps/chosen': -353.61248779296875, 'logps/rejected': -349.9624938964844, 'logits/chosen': -1.754296898841858, 'logits/rejected': -1.703027367591858, 'losses/dpo_loss': 0.38140869140625, 'values/chosen': 0.008092880249023438, 'values/rejected': -1.713281273841858, 'values/accuracies': 0.797656238079071, 'values/margins': 1.7209961414337158, 'losses/value_loss': 0.41130369901657104, 'epoch': 0.53, 'num_input_tokens_seen': 0, 'train_runtime': 6773.798, 'train_tokens_per_second': 0.0}
+ 53%|█████▎    | 250/472 [1:52:48<1:35:20, 25.77s/it] 53%|█████▎    | 251/472 [1:53:13<1:34:35, 25.68s/it] 53%|█████▎    | 252/472 [1:53:36<1:31:16, 24.89s/it] 54%|█████▎    | 253/472 [1:54:02<1:31:27, 25.06s/it] 54%|█████▍    | 254/472 [1:54:26<1:30:16, 24.85s/it] 54%|█████▍    | 255/472 [1:54:52<1:30:51, 25.12s/it] 54%|█████▍    | 256/472 [1:55:15<1:29:00, 24.72s/it] 54%|█████▍    | 257/472 [1:55:41<1:29:16, 24.91s/it] 55%|█████▍    | 258/472 [1:56:06<1:28:37, 24.85s/it] 55%|█████▍    | 259/472 [1:56:29<1:26:39, 24.41s/it] 55%|█████▌    | 260/472 [1:56:54<1:27:20, 24.72s/it]                                                     {'loss': 0.57, 'grad_norm': 4.733803427414406, 'learning_rate': 2.2563559322033897e-07, 'rewards/chosen': -1.100561499595642, 'rewards/rejected': -2.924609422683716, 'rewards/accuracies': 0.8148437738418579, 'rewards/margins': 1.82470703125, 'logps/chosen': -349.36248779296875, 'logps/rejected': -348.6499938964844, 'logits/chosen': -1.7560546398162842, 'logits/rejected': -1.698339819908142, 'losses/dpo_loss': 0.3723510801792145, 'values/chosen': 0.1299125701189041, 'values/rejected': -1.6484863758087158, 'values/accuracies': 0.8070312738418579, 'values/margins': 1.7784912586212158, 'losses/value_loss': 0.3948730528354645, 'epoch': 0.55, 'num_input_tokens_seen': 0, 'train_runtime': 7020.5698, 'train_tokens_per_second': 0.0}
+ 55%|█████▌    | 260/472 [1:56:54<1:27:20, 24.72s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:35,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.25s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.24s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.27s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.28s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.18s/it][A
+ 79%|███████▉  | 31/39 [00:37<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.20s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                     
+                                               [A{'eval_loss': 0.5928327441215515, 'eval_runtime': 48.5614, 'eval_samples_per_second': 12.541, 'eval_steps_per_second': 0.803, 'eval_rewards/chosen': -1.1803385019302368, 'eval_rewards/rejected': -2.900841236114502, 'eval_rewards/accuracies': 0.7996794581413269, 'eval_rewards/margins': 1.7205028533935547, 'eval_logps/chosen': -336.28204345703125, 'eval_logps/rejected': -327.6153869628906, 'eval_logits/chosen': -1.7435897588729858, 'eval_logits/rejected': -1.7141426801681519, 'eval_losses/dpo_loss': 0.40537360310554504, 'eval_values/chosen': 0.15631572902202606, 'eval_values/rejected': -1.4871795177459717, 'eval_values/accuracies': 0.7660256624221802, 'eval_values/margins': 1.6429537534713745, 'eval_losses/value_loss': 0.47353264689445496, 'epoch': 0.55, 'num_input_tokens_seen': 0}
+ 55%|█████▌    | 260/472 [1:57:43<1:27:20, 24.72s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 55%|█████▌    | 261/472 [1:58:08<2:18:07, 39.28s/it] 56%|█████▌    | 262/472 [1:58:34<2:03:28, 35.28s/it] 56%|█████▌    | 263/472 [1:58:57<1:50:55, 31.84s/it] 56%|█████▌    | 264/472 [1:59:22<1:42:50, 29.66s/it] 56%|█████▌    | 265/472 [1:59:48<1:38:33, 28.57s/it] 56%|█████▋    | 266/472 [2:00:13<1:34:13, 27.45s/it] 57%|█████▋    | 267/472 [2:00:37<1:30:53, 26.60s/it] 57%|█████▋    | 268/472 [2:01:03<1:29:22, 26.29s/it] 57%|█████▋    | 269/472 [2:01:28<1:28:06, 26.04s/it] 57%|█████▋    | 270/472 [2:01:53<1:25:52, 25.51s/it]                                                     {'loss': 0.5543, 'grad_norm': 3.7517741545303767, 'learning_rate': 2.1504237288135594e-07, 'rewards/chosen': -1.0404479503631592, 'rewards/rejected': -2.913867235183716, 'rewards/accuracies': 0.8257812261581421, 'rewards/margins': 1.8745605945587158, 'logps/chosen': -350.1625061035156, 'logps/rejected': -355.54998779296875, 'logits/chosen': -1.768457055091858, 'logits/rejected': -1.729882836341858, 'losses/dpo_loss': 0.36353760957717896, 'values/chosen': 0.23961563408374786, 'values/rejected': -1.535424828529358, 'values/accuracies': 0.8226562738418579, 'values/margins': 1.7750976085662842, 'losses/value_loss': 0.38135987520217896, 'epoch': 0.57, 'num_input_tokens_seen': 0, 'train_runtime': 7318.9153, 'train_tokens_per_second': 0.0}
+ 57%|█████▋    | 270/472 [2:01:53<1:25:52, 25.51s/it] 57%|█████▋    | 271/472 [2:02:17<1:24:18, 25.16s/it] 58%|█████▊    | 272/472 [2:02:42<1:24:03, 25.22s/it] 58%|█████▊    | 273/472 [2:03:09<1:24:33, 25.50s/it] 58%|█████▊    | 274/472 [2:03:34<1:23:38, 25.34s/it] 58%|█████▊    | 275/472 [2:03:57<1:21:05, 24.70s/it] 58%|█████▊    | 276/472 [2:04:22<1:21:07, 24.84s/it] 59%|█████▊    | 277/472 [2:04:46<1:19:47, 24.55s/it] 59%|█████▉    | 278/472 [2:05:09<1:17:49, 24.07s/it] 59%|█████▉    | 279/472 [2:05:35<1:19:35, 24.74s/it] 59%|█████▉    | 280/472 [2:06:00<1:19:29, 24.84s/it]                                                     {'loss': 0.5439, 'grad_norm': 4.042045719299895, 'learning_rate': 2.0444915254237288e-07, 'rewards/chosen': -1.030029296875, 'rewards/rejected': -2.896484375, 'rewards/accuracies': 0.821093738079071, 'rewards/margins': 1.8671875, 'logps/chosen': -348.2124938964844, 'logps/rejected': -343.1625061035156, 'logits/chosen': -1.727929711341858, 'logits/rejected': -1.698144555091858, 'losses/dpo_loss': 0.35395509004592896, 'values/chosen': 0.23412856459617615, 'values/rejected': -1.6187012195587158, 'values/accuracies': 0.821093738079071, 'values/margins': 1.853369116783142, 'losses/value_loss': 0.3794921934604645, 'epoch': 0.59, 'num_input_tokens_seen': 0, 'train_runtime': 7566.3221, 'train_tokens_per_second': 0.0}
+ 59%|█████▉    | 280/472 [2:06:00<1:19:29, 24.84s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.48it/s][A
+  8%|▊         | 3/39 [00:02<00:32,  1.12it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:40,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:22<00:27,  1.33s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.34s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.19s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.14s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A                                                     
+                                               [A{'eval_loss': 0.5873229503631592, 'eval_runtime': 48.6338, 'eval_samples_per_second': 12.522, 'eval_steps_per_second': 0.802, 'eval_rewards/chosen': -1.2086838483810425, 'eval_rewards/rejected': -2.9749598503112793, 'eval_rewards/accuracies': 0.7980769276618958, 'eval_rewards/margins': 1.7653745412826538, 'eval_logps/chosen': -336.79486083984375, 'eval_logps/rejected': -328.4871826171875, 'eval_logits/chosen': -1.7381811141967773, 'eval_logits/rejected': -1.7077323198318481, 'eval_losses/dpo_loss': 0.40195563435554504, 'eval_values/chosen': 0.08936172723770142, 'eval_values/rejected': -1.5989583730697632, 'eval_values/accuracies': 0.7660256624221802, 'eval_values/margins': 1.6888396739959717, 'eval_losses/value_loss': 0.47465944290161133, 'epoch': 0.59, 'num_input_tokens_seen': 0}
+ 59%|█████▉    | 280/472 [2:06:49<1:19:29, 24.84s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A
+                                               [A 60%|█████▉    | 281/472 [2:07:12<2:04:05, 38.98s/it] 60%|█████▉    | 282/472 [2:07:36<1:49:14, 34.50s/it] 60%|█████▉    | 283/472 [2:08:01<1:39:15, 31.51s/it] 60%|██████    | 284/472 [2:08:24<1:31:28, 29.20s/it] 60%|██████    | 285/472 [2:08:50<1:27:18, 28.01s/it] 61%|██████    | 286/472 [2:09:14<1:23:42, 27.00s/it] 61%|██████    | 287/472 [2:09:40<1:21:51, 26.55s/it] 61%|██████    | 288/472 [2:10:05<1:19:47, 26.02s/it] 61%|██████    | 289/472 [2:10:29<1:18:06, 25.61s/it] 61%|██████▏   | 290/472 [2:10:54<1:16:35, 25.25s/it]                                                     {'loss': 0.6227, 'grad_norm': 6.455376194654177, 'learning_rate': 1.9385593220338982e-07, 'rewards/chosen': -1.175561547279358, 'rewards/rejected': -2.9244141578674316, 'rewards/accuracies': 0.8070312738418579, 'rewards/margins': 1.748291015625, 'logps/chosen': -347.57501220703125, 'logps/rejected': -339.5625, 'logits/chosen': -1.757421851158142, 'logits/rejected': -1.7365233898162842, 'losses/dpo_loss': 0.40715330839157104, 'values/chosen': 0.11052169650793076, 'values/rejected': -1.5957763195037842, 'values/accuracies': 0.803906261920929, 'values/margins': 1.7068970203399658, 'losses/value_loss': 0.4311889708042145, 'epoch': 0.62, 'num_input_tokens_seen': 0, 'train_runtime': 7859.8939, 'train_tokens_per_second': 0.0}
+ 61%|██████▏   | 290/472 [2:10:54<1:16:35, 25.25s/it] 62%|██████▏   | 291/472 [2:11:19<1:16:00, 25.19s/it] 62%|██████▏   | 292/472 [2:11:43<1:14:35, 24.87s/it] 62%|██████▏   | 293/472 [2:12:07<1:13:36, 24.67s/it] 62%|██████▏   | 294/472 [2:12:33<1:14:06, 24.98s/it] 62%|██████▎   | 295/472 [2:12:58<1:13:55, 25.06s/it] 63%|██████▎   | 296/472 [2:13:23<1:13:31, 25.06s/it] 63%|██████▎   | 297/472 [2:13:48<1:13:02, 25.04s/it] 63%|██████▎   | 298/472 [2:14:12<1:11:44, 24.74s/it] 63%|██████▎   | 299/472 [2:14:38<1:12:17, 25.07s/it] 64%|██████▎   | 300/472 [2:15:04<1:12:34, 25.31s/it]                                                     {'loss': 0.5921, 'grad_norm': 4.430224917155318, 'learning_rate': 1.8326271186440679e-07, 'rewards/chosen': -1.1365478038787842, 'rewards/rejected': -2.9117188453674316, 'rewards/accuracies': 0.8148437738418579, 'rewards/margins': 1.7749512195587158, 'logps/chosen': -352.17498779296875, 'logps/rejected': -351.875, 'logits/chosen': -1.734960913658142, 'logits/rejected': -1.686425805091858, 'losses/dpo_loss': 0.3839782774448395, 'values/chosen': 0.030870437622070312, 'values/rejected': -1.64984130859375, 'values/accuracies': 0.807812511920929, 'values/margins': 1.6806151866912842, 'losses/value_loss': 0.41651612520217896, 'epoch': 0.64, 'num_input_tokens_seen': 0, 'train_runtime': 8110.045, 'train_tokens_per_second': 0.0}
+ 64%|██████▎   | 300/472 [2:15:04<1:12:34, 25.31s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.48it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:22<00:27,  1.33s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.34s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.28s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.17s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.19s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.12s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.14s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A                                                     
+                                               [A{'eval_loss': 0.5844622254371643, 'eval_runtime': 48.6151, 'eval_samples_per_second': 12.527, 'eval_steps_per_second': 0.802, 'eval_rewards/chosen': -1.2012720108032227, 'eval_rewards/rejected': -2.9919872283935547, 'eval_rewards/accuracies': 0.7964743375778198, 'eval_rewards/margins': 1.7916666269302368, 'eval_logps/chosen': -336.5897521972656, 'eval_logps/rejected': -328.5897521972656, 'eval_logits/chosen': -1.7145432233810425, 'eval_logits/rejected': -1.6812900304794312, 'eval_losses/dpo_loss': 0.3953826129436493, 'eval_values/chosen': -0.05290808901190758, 'eval_values/rejected': -1.735576868057251, 'eval_values/accuracies': 0.7644230723381042, 'eval_values/margins': 1.6830178499221802, 'eval_losses/value_loss': 0.4661959111690521, 'epoch': 0.64, 'num_input_tokens_seen': 0}
+ 64%|██████▎   | 300/472 [2:15:52<1:12:34, 25.31s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.20s/it][A
+                                               [A 64%|██████▍   | 301/472 [2:16:18<1:53:38, 39.88s/it] 64%|██████▍   | 302/472 [2:16:42<1:39:41, 35.18s/it] 64%|██████▍   | 303/472 [2:17:07<1:30:52, 32.26s/it] 64%|██████▍   | 304/472 [2:17:33<1:24:57, 30.34s/it] 65%|██████▍   | 305/472 [2:17:58<1:19:50, 28.69s/it] 65%|██████▍   | 306/472 [2:18:23<1:16:05, 27.50s/it] 65%|██████▌   | 307/472 [2:18:47<1:13:03, 26.56s/it] 65%|██████▌   | 308/472 [2:19:12<1:10:54, 25.94s/it] 65%|██████▌   | 309/472 [2:19:37<1:09:43, 25.67s/it] 66%|██████▌   | 310/472 [2:20:02<1:08:45, 25.47s/it]                                                     {'loss': 0.5554, 'grad_norm': 3.9133951606259387, 'learning_rate': 1.7266949152542373e-07, 'rewards/chosen': -1.101599097251892, 'rewards/rejected': -3.011914014816284, 'rewards/accuracies': 0.8304687738418579, 'rewards/margins': 1.91064453125, 'logps/chosen': -347.5874938964844, 'logps/rejected': -347.9750061035156, 'logits/chosen': -1.7629883289337158, 'logits/rejected': -1.7487304210662842, 'losses/dpo_loss': 0.356292724609375, 'values/chosen': -0.01913738250732422, 'values/rejected': -1.7524902820587158, 'values/accuracies': 0.8101562261581421, 'values/margins': 1.7333495616912842, 'losses/value_loss': 0.3980773985385895, 'epoch': 0.66, 'num_input_tokens_seen': 0, 'train_runtime': 8407.8955, 'train_tokens_per_second': 0.0}
+ 66%|██████▌   | 310/472 [2:20:02<1:08:45, 25.47s/it] 66%|██████▌   | 311/472 [2:20:26<1:07:49, 25.27s/it] 66%|██████▌   | 312/472 [2:20:52<1:07:17, 25.24s/it] 66%|██████▋   | 313/472 [2:21:16<1:05:50, 24.85s/it] 67%|██████▋   | 314/472 [2:21:40<1:04:45, 24.59s/it] 67%|██████▋   | 315/472 [2:22:05<1:04:50, 24.78s/it] 67%|██████▋   | 316/472 [2:22:29<1:03:44, 24.52s/it] 67%|██████▋   | 317/472 [2:22:53<1:02:58, 24.38s/it] 67%|██████▋   | 318/472 [2:23:17<1:02:10, 24.22s/it] 68%|██████▊   | 319/472 [2:23:42<1:02:53, 24.67s/it] 68%|██████▊   | 320/472 [2:24:08<1:03:03, 24.89s/it]                                                     {'loss': 0.606, 'grad_norm': 4.17020377387, 'learning_rate': 1.620762711864407e-07, 'rewards/chosen': -1.2230956554412842, 'rewards/rejected': -3.0780272483825684, 'rewards/accuracies': 0.797656238079071, 'rewards/margins': 1.8543212413787842, 'logps/chosen': -341.61248779296875, 'logps/rejected': -332.51251220703125, 'logits/chosen': -1.747656226158142, 'logits/rejected': -1.7117187976837158, 'losses/dpo_loss': 0.3938964903354645, 'values/chosen': -0.06836452335119247, 'values/rejected': -1.7499511241912842, 'values/accuracies': 0.7953125238418579, 'values/margins': 1.6818358898162842, 'losses/value_loss': 0.42424315214157104, 'epoch': 0.68, 'num_input_tokens_seen': 0, 'train_runtime': 8653.9601, 'train_tokens_per_second': 0.0}
+ 68%|██████▊   | 320/472 [2:24:08<1:03:03, 24.89s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:35,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.25s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.24s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.27s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.28s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:37<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.19s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.16s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                     
+                                               [A{'eval_loss': 0.5846161842346191, 'eval_runtime': 48.574, 'eval_samples_per_second': 12.538, 'eval_steps_per_second': 0.803, 'eval_rewards/chosen': -1.3203125, 'eval_rewards/rejected': -3.1282050609588623, 'eval_rewards/accuracies': 0.7948718070983887, 'eval_rewards/margins': 1.80859375, 'eval_logps/chosen': -337.79486083984375, 'eval_logps/rejected': -330.0, 'eval_logits/chosen': -1.7137420177459717, 'eval_logits/rejected': -1.6832932233810425, 'eval_losses/dpo_loss': 0.39870041608810425, 'eval_values/chosen': -0.10269439220428467, 'eval_values/rejected': -1.723858118057251, 'eval_values/accuracies': 0.7676281929016113, 'eval_values/margins': 1.6204928159713745, 'eval_losses/value_loss': 0.4636668562889099, 'epoch': 0.68, 'num_input_tokens_seen': 0}
+ 68%|██████▊   | 320/472 [2:24:56<1:03:03, 24.89s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 68%|██████▊   | 321/472 [2:25:20<1:38:33, 39.16s/it] 68%|██████▊   | 322/472 [2:25:45<1:27:12, 34.88s/it] 68%|██████▊   | 323/472 [2:26:10<1:19:19, 31.95s/it] 69%|██████▊   | 324/472 [2:26:35<1:13:51, 29.95s/it] 69%|██████▉   | 325/472 [2:27:01<1:10:06, 28.62s/it] 69%|██████▉   | 326/472 [2:27:27<1:07:46, 27.85s/it] 69%|██████▉   | 327/472 [2:27:52<1:05:14, 27.00s/it] 69%|██████▉   | 328/472 [2:28:17<1:03:17, 26.37s/it] 70%|██████▉   | 329/472 [2:28:42<1:02:10, 26.09s/it] 70%|██████▉   | 330/472 [2:29:05<59:26, 25.12s/it]                                                     {'loss': 0.5474, 'grad_norm': 4.105357406187506, 'learning_rate': 1.5148305084745763e-07, 'rewards/chosen': -1.207373023033142, 'rewards/rejected': -3.1468749046325684, 'rewards/accuracies': 0.828906238079071, 'rewards/margins': 1.9396483898162842, 'logps/chosen': -358.4375, 'logps/rejected': -352.3125, 'logits/chosen': -1.769628882408142, 'logits/rejected': -1.72705078125, 'losses/dpo_loss': 0.35371094942092896, 'values/chosen': -0.11010952293872833, 'values/rejected': -1.8637206554412842, 'values/accuracies': 0.8125, 'values/margins': 1.7533447742462158, 'losses/value_loss': 0.3876281678676605, 'epoch': 0.7, 'num_input_tokens_seen': 0, 'train_runtime': 8951.4754, 'train_tokens_per_second': 0.0}
+ 70%|██████▉   | 330/472 [2:29:05<59:26, 25.12s/it] 70%|███████   | 331/472 [2:29:30<59:00, 25.11s/it] 70%|███████   | 332/472 [2:29:56<58:39, 25.14s/it] 71%|███████   | 333/472 [2:30:21<58:11, 25.12s/it] 71%|███████   | 334/472 [2:30:46<58:08, 25.28s/it] 71%|███████   | 335/472 [2:31:10<56:52, 24.91s/it] 71%|███████   | 336/472 [2:31:35<56:00, 24.71s/it] 71%|███████▏  | 337/472 [2:31:59<55:25, 24.63s/it] 72%|███████▏  | 338/472 [2:32:24<55:23, 24.80s/it] 72%|███████▏  | 339/472 [2:32:50<55:33, 25.06s/it] 72%|███████▏  | 340/472 [2:33:15<55:10, 25.08s/it]                                                   {'loss': 0.5623, 'grad_norm': 5.090246216708672, 'learning_rate': 1.4088983050847457e-07, 'rewards/chosen': -1.244726538658142, 'rewards/rejected': -3.194531202316284, 'rewards/accuracies': 0.8218749761581421, 'rewards/margins': 1.949609398841858, 'logps/chosen': -356.8500061035156, 'logps/rejected': -359.0375061035156, 'logits/chosen': -1.774999976158142, 'logits/rejected': -1.712988257408142, 'losses/dpo_loss': 0.3720703125, 'values/chosen': -0.08121967315673828, 'values/rejected': -1.883642554283142, 'values/accuracies': 0.796875, 'values/margins': 1.8020508289337158, 'losses/value_loss': 0.38047486543655396, 'epoch': 0.72, 'num_input_tokens_seen': 0, 'train_runtime': 9201.2208, 'train_tokens_per_second': 0.0}
+ 72%|███████▏  | 340/472 [2:33:15<55:10, 25.08s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.48it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:22<00:27,  1.33s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.34s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.28s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.24s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.22s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.11s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.18s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.16s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.20s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:46<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                   
+                                               [A{'eval_loss': 0.5826983451843262, 'eval_runtime': 48.7201, 'eval_samples_per_second': 12.5, 'eval_steps_per_second': 0.8, 'eval_rewards/chosen': -1.2772936820983887, 'eval_rewards/rejected': -3.1113781929016113, 'eval_rewards/accuracies': 0.7964743375778198, 'eval_rewards/margins': 1.833834171295166, 'eval_logps/chosen': -337.4102478027344, 'eval_logps/rejected': -329.78204345703125, 'eval_logits/chosen': -1.720552921295166, 'eval_logits/rejected': -1.6881009340286255, 'eval_losses/dpo_loss': 0.40004006028175354, 'eval_values/chosen': -0.055552948266267776, 'eval_values/rejected': -1.7540063858032227, 'eval_values/accuracies': 0.7660256624221802, 'eval_values/margins': 1.6981921195983887, 'eval_losses/value_loss': 0.46839943528175354, 'epoch': 0.72, 'num_input_tokens_seen': 0}
+ 72%|███████▏  | 340/472 [2:34:04<55:10, 25.08s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 72%|███████▏  | 341/472 [2:34:29<1:26:56, 39.82s/it] 72%|███████▏  | 342/472 [2:34:55<1:17:03, 35.56s/it] 73%|███████▎  | 343/472 [2:35:20<1:09:25, 32.29s/it] 73%|███████▎  | 344/472 [2:35:44<1:03:53, 29.95s/it] 73%|███████▎  | 345/472 [2:36:09<1:00:18, 28.50s/it] 73%|███████▎  | 346/472 [2:36:33<57:02, 27.16s/it]   74%|███████▎  | 347/472 [2:36:58<54:55, 26.36s/it] 74%|███████▎  | 348/472 [2:37:22<53:32, 25.91s/it] 74%|███████▍  | 349/472 [2:37:46<51:55, 25.33s/it] 74%|███████▍  | 350/472 [2:38:10<50:25, 24.80s/it]                                                   {'loss': 0.5408, 'grad_norm': 3.466087274255803, 'learning_rate': 1.3029661016949154e-07, 'rewards/chosen': -1.205175757408142, 'rewards/rejected': -3.128710985183716, 'rewards/accuracies': 0.831250011920929, 'rewards/margins': 1.924902319908142, 'logps/chosen': -359.29998779296875, 'logps/rejected': -348.8125, 'logits/chosen': -1.769628882408142, 'logits/rejected': -1.7263672351837158, 'losses/dpo_loss': 0.35258787870407104, 'values/chosen': -0.08363952487707138, 'values/rejected': -1.9201171398162842, 'values/accuracies': 0.8218749761581421, 'values/margins': 1.836816430091858, 'losses/value_loss': 0.3764282166957855, 'epoch': 0.74, 'num_input_tokens_seen': 0, 'train_runtime': 9496.2471, 'train_tokens_per_second': 0.0}
+ 74%|███████▍  | 350/472 [2:38:10<50:25, 24.80s/it] 74%|███████▍  | 351/472 [2:38:33<49:10, 24.38s/it] 75%|███████▍  | 352/472 [2:38:59<49:23, 24.70s/it] 75%|███████▍  | 353/472 [2:39:24<49:24, 24.91s/it] 75%|███████▌  | 354/472 [2:39:49<48:57, 24.89s/it] 75%|███████▌  | 355/472 [2:40:15<48:51, 25.06s/it] 75%|███████▌  | 356/472 [2:40:40<48:45, 25.22s/it] 76%|███████▌  | 357/472 [2:41:04<47:24, 24.73s/it] 76%|███████▌  | 358/472 [2:41:28<46:37, 24.54s/it] 76%|███████▌  | 359/472 [2:41:52<45:47, 24.32s/it] 76%|███████▋  | 360/472 [2:42:16<45:35, 24.43s/it]                                                   {'loss': 0.5791, 'grad_norm': 4.561579441837826, 'learning_rate': 1.1970338983050848e-07, 'rewards/chosen': -1.212890625, 'rewards/rejected': -3.09765625, 'rewards/accuracies': 0.8101562261581421, 'rewards/margins': 1.884130835533142, 'logps/chosen': -351.4624938964844, 'logps/rejected': -346.5625, 'logits/chosen': -1.783105492591858, 'logits/rejected': -1.7258789539337158, 'losses/dpo_loss': 0.38037109375, 'values/chosen': -0.079259492456913, 'values/rejected': -1.9043457508087158, 'values/accuracies': 0.809374988079071, 'values/margins': 1.8251221179962158, 'losses/value_loss': 0.39756470918655396, 'epoch': 0.76, 'num_input_tokens_seen': 0, 'train_runtime': 9742.569, 'train_tokens_per_second': 0.0}
+ 76%|███████▋  | 360/472 [2:42:16<45:35, 24.43s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.50it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.14it/s][A
+ 10%|█         | 4/39 [00:03<00:35,  1.02s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.12s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.20s/it][A
+ 18%|█▊        | 7/39 [00:07<00:39,  1.25s/it][A
+ 21%|██        | 8/39 [00:08<00:37,  1.22s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.24s/it][A
+ 26%|██▌       | 10/39 [00:11<00:35,  1.23s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.27s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.26s/it][A
+ 33%|███▎      | 13/39 [00:15<00:32,  1.26s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.22s/it][A
+ 38%|███▊      | 15/39 [00:17<00:29,  1.25s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.27s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.30s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.31s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.32s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.33s/it][A
+ 54%|█████▍    | 21/39 [00:25<00:24,  1.33s/it][A
+ 56%|█████▋    | 22/39 [00:26<00:21,  1.26s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.29s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.23s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.22s/it][A
+ 67%|██████▋   | 26/39 [00:31<00:16,  1.26s/it][A
+ 69%|██████▉   | 27/39 [00:32<00:14,  1.20s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.22s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:10,  1.09s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.16s/it][A
+ 79%|███████▉  | 31/39 [00:37<00:09,  1.21s/it][A
+ 82%|████████▏ | 32/39 [00:38<00:08,  1.17s/it][A
+ 85%|████████▍ | 33/39 [00:39<00:06,  1.14s/it][A
+ 87%|████████▋ | 34/39 [00:40<00:05,  1.12s/it][A
+ 90%|████████▉ | 35/39 [00:41<00:04,  1.11s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.18s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.12s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.13s/it][A
+100%|██████████| 39/39 [00:46<00:00,  1.19s/it][A                                                   
+                                               [A{'eval_loss': 0.5782853364944458, 'eval_runtime': 48.1321, 'eval_samples_per_second': 12.653, 'eval_steps_per_second': 0.81, 'eval_rewards/chosen': -1.1678686141967773, 'eval_rewards/rejected': -3.0100159645080566, 'eval_rewards/accuracies': 0.8028846383094788, 'eval_rewards/margins': 1.8421975374221802, 'eval_logps/chosen': -336.1794738769531, 'eval_logps/rejected': -328.9871826171875, 'eval_logits/chosen': -1.7357772588729858, 'eval_logits/rejected': -1.7063301801681519, 'eval_losses/dpo_loss': 0.39224007725715637, 'eval_values/chosen': -0.06882887333631516, 'eval_values/rejected': -1.8179086446762085, 'eval_values/accuracies': 0.7612179517745972, 'eval_values/margins': 1.7494240999221802, 'eval_losses/value_loss': 0.47087839245796204, 'epoch': 0.76, 'num_input_tokens_seen': 0}
+ 76%|███████▋  | 360/472 [2:43:04<45:35, 24.43s/it]
+100%|██████████| 39/39 [00:46<00:00,  1.19s/it][A
+                                               [A 76%|███████▋  | 361/472 [2:43:28<1:11:19, 38.55s/it] 77%|███████▋  | 362/472 [2:43:53<1:03:28, 34.63s/it] 77%|███████▋  | 363/472 [2:44:18<57:45, 31.79s/it]   77%|███████▋  | 364/472 [2:44:43<53:10, 29.54s/it] 77%|███████▋  | 365/472 [2:45:06<49:30, 27.76s/it] 78%|███████▊  | 366/472 [2:45:30<47:04, 26.65s/it] 78%|███████▊  | 367/472 [2:45:56<45:49, 26.18s/it] 78%|███████▊  | 368/472 [2:46:17<43:09, 24.90s/it] 78%|███████▊  | 369/472 [2:46:42<42:41, 24.87s/it] 78%|███████▊  | 370/472 [2:47:08<42:54, 25.24s/it]                                                   {'loss': 0.5408, 'grad_norm': 4.174161946839555, 'learning_rate': 1.0911016949152542e-07, 'rewards/chosen': -1.0299561023712158, 'rewards/rejected': -3.013964891433716, 'rewards/accuracies': 0.8296874761581421, 'rewards/margins': 1.9848144054412842, 'logps/chosen': -347.82501220703125, 'logps/rejected': -337.95001220703125, 'logits/chosen': -1.7843749523162842, 'logits/rejected': -1.77490234375, 'losses/dpo_loss': 0.3513427674770355, 'values/chosen': 0.12177429348230362, 'values/rejected': -1.833166480064392, 'values/accuracies': 0.8296874761581421, 'values/margins': 1.9546387195587158, 'losses/value_loss': 0.37882691621780396, 'epoch': 0.79, 'num_input_tokens_seen': 0, 'train_runtime': 10034.5774, 'train_tokens_per_second': 0.0}
+ 78%|███████▊  | 370/472 [2:47:08<42:54, 25.24s/it] 79%|███████▊  | 371/472 [2:47:34<42:46, 25.41s/it] 79%|███████▉  | 372/472 [2:47:57<40:56, 24.56s/it] 79%|███████▉  | 373/472 [2:48:22<40:46, 24.72s/it] 79%|███████▉  | 374/472 [2:48:47<40:34, 24.84s/it] 79%|███████▉  | 375/472 [2:49:11<40:00, 24.75s/it] 80%|███████▉  | 376/472 [2:49:36<39:35, 24.74s/it] 80%|███████▉  | 377/472 [2:50:01<39:24, 24.89s/it] 80%|████████  | 378/472 [2:50:25<38:24, 24.52s/it] 80%|████████  | 379/472 [2:50:49<37:44, 24.35s/it] 81%|████████  | 380/472 [2:51:14<37:31, 24.47s/it]                                                   {'loss': 0.5384, 'grad_norm': 3.932047238998602, 'learning_rate': 9.851694915254237e-08, 'rewards/chosen': -1.0887451171875, 'rewards/rejected': -3.0703125, 'rewards/accuracies': 0.8257812261581421, 'rewards/margins': 1.9818847179412842, 'logps/chosen': -336.67498779296875, 'logps/rejected': -337.26251220703125, 'logits/chosen': -1.75439453125, 'logits/rejected': -1.763574242591858, 'losses/dpo_loss': 0.34654539823532104, 'values/chosen': 0.033222198486328125, 'values/rejected': -1.8408203125, 'values/accuracies': 0.824999988079071, 'values/margins': 1.8742187023162842, 'losses/value_loss': 0.38408201932907104, 'epoch': 0.81, 'num_input_tokens_seen': 0, 'train_runtime': 10280.0171, 'train_tokens_per_second': 0.0}
+ 81%|████████  | 380/472 [2:51:14<37:31, 24.47s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:35,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.25s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.11s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.18s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.16s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.20s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                   
+                                               [A{'eval_loss': 0.5756170749664307, 'eval_runtime': 48.6511, 'eval_samples_per_second': 12.518, 'eval_steps_per_second': 0.802, 'eval_rewards/chosen': -1.317307710647583, 'eval_rewards/rejected': -3.1903045177459717, 'eval_rewards/accuracies': 0.8028846383094788, 'eval_rewards/margins': 1.8721954822540283, 'eval_logps/chosen': -337.6666564941406, 'eval_logps/rejected': -330.6538391113281, 'eval_logits/chosen': -1.7339743375778198, 'eval_logits/rejected': -1.7041265964508057, 'eval_losses/dpo_loss': 0.39455628395080566, 'eval_values/chosen': -0.23202750086784363, 'eval_values/rejected': -1.9619390964508057, 'eval_values/accuracies': 0.7628205418586731, 'eval_values/margins': 1.7298177480697632, 'eval_losses/value_loss': 0.4640675187110901, 'epoch': 0.81, 'num_input_tokens_seen': 0}
+ 81%|████████  | 380/472 [2:52:02<37:31, 24.47s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 81%|████████  | 381/472 [2:52:27<59:22, 39.15s/it] 81%|████████  | 382/472 [2:52:51<51:42, 34.48s/it] 81%|████████  | 383/472 [2:53:15<46:27, 31.32s/it] 81%|████████▏ | 384/472 [2:53:40<43:17, 29.52s/it] 82%|████████▏ | 385/472 [2:54:05<40:43, 28.08s/it] 82%|████████▏ | 386/472 [2:54:28<38:22, 26.77s/it] 82%|████████▏ | 387/472 [2:54:53<37:02, 26.14s/it] 82%|████████▏ | 388/472 [2:55:17<35:44, 25.52s/it] 82%|████████▏ | 389/472 [2:55:39<33:55, 24.53s/it] 83%|████████▎ | 390/472 [2:56:03<33:09, 24.27s/it]                                                   {'loss': 0.5769, 'grad_norm': 3.7492007909282807, 'learning_rate': 8.792372881355932e-08, 'rewards/chosen': -1.2619140148162842, 'rewards/rejected': -3.213085889816284, 'rewards/accuracies': 0.817187488079071, 'rewards/margins': 1.9521484375, 'logps/chosen': -336.82501220703125, 'logps/rejected': -338.0249938964844, 'logits/chosen': -1.7620117664337158, 'logits/rejected': -1.7385742664337158, 'losses/dpo_loss': 0.3713622987270355, 'values/chosen': -0.158222958445549, 'values/rejected': -1.9403808116912842, 'values/accuracies': 0.8023437261581421, 'values/margins': 1.782141089439392, 'losses/value_loss': 0.411102294921875, 'epoch': 0.83, 'num_input_tokens_seen': 0, 'train_runtime': 10569.3279, 'train_tokens_per_second': 0.0}
+ 83%|████████▎ | 390/472 [2:56:03<33:09, 24.27s/it] 83%|████████▎ | 391/472 [2:56:27<32:44, 24.26s/it] 83%|████████▎ | 392/472 [2:56:52<32:33, 24.42s/it] 83%|████████▎ | 393/472 [2:57:18<32:49, 24.93s/it] 83%|████████▎ | 394/472 [2:57:43<32:10, 24.75s/it] 84%|████████▎ | 395/472 [2:58:07<31:33, 24.59s/it] 84%|████████▍ | 396/472 [2:58:30<30:44, 24.27s/it] 84%|████████▍ | 397/472 [2:58:55<30:38, 24.51s/it] 84%|████████▍ | 398/472 [2:59:19<29:55, 24.26s/it] 85%|████████▍ | 399/472 [2:59:44<29:54, 24.58s/it] 85%|████████▍ | 400/472 [3:00:08<29:16, 24.40s/it]                                                   {'loss': 0.5316, 'grad_norm': 4.198320224630114, 'learning_rate': 7.733050847457628e-08, 'rewards/chosen': -1.37548828125, 'rewards/rejected': -3.394335985183716, 'rewards/accuracies': 0.839062511920929, 'rewards/margins': 2.019970655441284, 'logps/chosen': -347.4375, 'logps/rejected': -352.04998779296875, 'logits/chosen': -1.783203125, 'logits/rejected': -1.708593726158142, 'losses/dpo_loss': 0.34367674589157104, 'values/chosen': -0.18153896927833557, 'values/rejected': -2.0013670921325684, 'values/accuracies': 0.8257812261581421, 'values/margins': 1.819726586341858, 'losses/value_loss': 0.37525635957717896, 'epoch': 0.85, 'num_input_tokens_seen': 0, 'train_runtime': 10814.6268, 'train_tokens_per_second': 0.0}
+ 85%|████████▍ | 400/472 [3:00:08<29:16, 24.40s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:22<00:27,  1.33s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.34s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.35s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.28s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.24s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.18s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.16s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.20s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                   
+                                               [A{'eval_loss': 0.5781057476997375, 'eval_runtime': 48.705, 'eval_samples_per_second': 12.504, 'eval_steps_per_second': 0.801, 'eval_rewards/chosen': -1.4832732677459717, 'eval_rewards/rejected': -3.3705928325653076, 'eval_rewards/accuracies': 0.7932692170143127, 'eval_rewards/margins': 1.8871694803237915, 'eval_logps/chosen': -339.4358825683594, 'eval_logps/rejected': -332.4230651855469, 'eval_logits/chosen': -1.7275640964508057, 'eval_logits/rejected': -1.6987179517745972, 'eval_losses/dpo_loss': 0.3937174379825592, 'eval_values/chosen': -0.3087627589702606, 'eval_values/rejected': -2.0184295177459717, 'eval_values/accuracies': 0.7660256624221802, 'eval_values/margins': 1.7103365659713745, 'eval_losses/value_loss': 0.46306589245796204, 'epoch': 0.85, 'num_input_tokens_seen': 0}
+ 85%|████████▍ | 400/472 [3:00:57<29:16, 24.40s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 85%|████████▍ | 401/472 [3:01:22<46:15, 39.09s/it] 85%|████████▌ | 402/472 [3:01:47<40:42, 34.90s/it] 85%|████████▌ | 403/472 [3:02:13<37:07, 32.29s/it] 86%|████████▌ | 404/472 [3:02:37<33:43, 29.75s/it] 86%|████████▌ | 405/472 [3:03:02<31:46, 28.45s/it] 86%|████████▌ | 406/472 [3:03:27<29:59, 27.27s/it] 86%|████████▌ | 407/472 [3:03:53<29:03, 26.82s/it] 86%|████████▋ | 408/472 [3:04:18<28:13, 26.46s/it] 87%|████████▋ | 409/472 [3:04:43<27:10, 25.88s/it] 87%|████████▋ | 410/472 [3:05:07<26:22, 25.53s/it]                                                   {'loss': 0.6071, 'grad_norm': 4.130974684616834, 'learning_rate': 6.673728813559322e-08, 'rewards/chosen': -1.441796898841858, 'rewards/rejected': -3.3089842796325684, 'rewards/accuracies': 0.8187500238418579, 'rewards/margins': 1.866796851158142, 'logps/chosen': -368.625, 'logps/rejected': -365.29998779296875, 'logits/chosen': -1.73828125, 'logits/rejected': -1.712890625, 'losses/dpo_loss': 0.3966430723667145, 'values/chosen': -0.19745922088623047, 'values/rejected': -1.884619116783142, 'values/accuracies': 0.796875, 'values/margins': 1.687109351158142, 'losses/value_loss': 0.42064207792282104, 'epoch': 0.87, 'num_input_tokens_seen': 0, 'train_runtime': 11113.7097, 'train_tokens_per_second': 0.0}
+ 87%|████████▋ | 410/472 [3:05:07<26:22, 25.53s/it] 87%|████████▋ | 411/472 [3:05:33<25:51, 25.44s/it] 87%|████████▋ | 412/472 [3:05:58<25:16, 25.27s/it] 88%|████████▊ | 413/472 [3:06:23<24:59, 25.41s/it] 88%|████████▊ | 414/472 [3:06:49<24:36, 25.47s/it] 88%|████████▊ | 415/472 [3:07:13<23:42, 24.95s/it] 88%|████████▊ | 416/472 [3:07:36<22:49, 24.45s/it] 88%|████████▊ | 417/472 [3:08:00<22:25, 24.46s/it] 89%|████████▊ | 418/472 [3:08:24<21:43, 24.14s/it] 89%|████████▉ | 419/472 [3:08:48<21:21, 24.18s/it] 89%|████████▉ | 420/472 [3:09:14<21:27, 24.76s/it]                                                   {'loss': 0.5505, 'grad_norm': 4.419857172781092, 'learning_rate': 5.614406779661017e-08, 'rewards/chosen': -1.328466773033142, 'rewards/rejected': -3.320507764816284, 'rewards/accuracies': 0.8304687738418579, 'rewards/margins': 1.992040991783142, 'logps/chosen': -357.04998779296875, 'logps/rejected': -364.6625061035156, 'logits/chosen': -1.7605469226837158, 'logits/rejected': -1.7263672351837158, 'losses/dpo_loss': 0.36701661348342896, 'values/chosen': -0.027686309069395065, 'values/rejected': -1.9032471179962158, 'values/accuracies': 0.8343750238418579, 'values/margins': 1.875097632408142, 'losses/value_loss': 0.36711424589157104, 'epoch': 0.89, 'num_input_tokens_seen': 0, 'train_runtime': 11360.4486, 'train_tokens_per_second': 0.0}
+ 89%|████████▉ | 420/472 [3:09:14<21:27, 24.76s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.29s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:22<00:27,  1.33s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.34s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.35s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.24s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.24s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.22s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.25s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.12s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.19s/it][A
+ 79%|███████▉  | 31/39 [00:38<00:09,  1.24s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.16s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.14s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.20s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:46<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                   
+                                               [A{'eval_loss': 0.5774707794189453, 'eval_runtime': 48.7498, 'eval_samples_per_second': 12.492, 'eval_steps_per_second': 0.8, 'eval_rewards/chosen': -1.4422075748443604, 'eval_rewards/rejected': -3.3561699390411377, 'eval_rewards/accuracies': 0.7916666865348816, 'eval_rewards/margins': 1.9136117696762085, 'eval_logps/chosen': -338.9230651855469, 'eval_logps/rejected': -332.3846130371094, 'eval_logits/chosen': -1.7223557233810425, 'eval_logits/rejected': -1.6911057233810425, 'eval_losses/dpo_loss': 0.39712288975715637, 'eval_values/chosen': -0.2745039463043213, 'eval_values/rejected': -2.004206657409668, 'eval_values/accuracies': 0.7660256624221802, 'eval_values/margins': 1.730694055557251, 'eval_losses/value_loss': 0.46839943528175354, 'epoch': 0.89, 'num_input_tokens_seen': 0}
+ 89%|████████▉ | 420/472 [3:10:03<21:27, 24.76s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 89%|████████▉ | 421/472 [3:10:26<32:56, 38.75s/it] 89%|████████▉ | 422/472 [3:10:51<28:58, 34.77s/it] 90%|████████▉ | 423/472 [3:11:17<26:06, 31.97s/it] 90%|████████▉ | 424/472 [3:11:41<23:53, 29.86s/it] 90%|█████████ | 425/472 [3:12:06<22:10, 28.30s/it] 90%|█████████ | 426/472 [3:12:31<20:56, 27.31s/it] 90%|█████████ | 427/472 [3:12:57<20:04, 26.76s/it] 91%|█████████ | 428/472 [3:13:21<19:00, 25.93s/it] 91%|█████████ | 429/472 [3:13:46<18:24, 25.68s/it] 91%|█████████ | 430/472 [3:14:10<17:43, 25.33s/it]                                                   {'loss': 0.6027, 'grad_norm': 4.357149428751991, 'learning_rate': 4.5550847457627115e-08, 'rewards/chosen': -1.3971679210662842, 'rewards/rejected': -3.3095703125, 'rewards/accuracies': 0.8101562261581421, 'rewards/margins': 1.9130370616912842, 'logps/chosen': -346.375, 'logps/rejected': -353.5874938964844, 'logits/chosen': -1.766210913658142, 'logits/rejected': -1.7248046398162842, 'losses/dpo_loss': 0.39130860567092896, 'values/chosen': -0.199940487742424, 'values/rejected': -1.9741699695587158, 'values/accuracies': 0.7945312261581421, 'values/margins': 1.774169921875, 'losses/value_loss': 0.42277830839157104, 'epoch': 0.91, 'num_input_tokens_seen': 0, 'train_runtime': 11656.4306, 'train_tokens_per_second': 0.0}
+ 91%|█████████ | 430/472 [3:14:10<17:43, 25.33s/it] 91%|█████████▏| 431/472 [3:14:35<17:16, 25.28s/it] 92%|█████████▏| 432/472 [3:14:59<16:30, 24.76s/it] 92%|█████████▏| 433/472 [3:15:24<16:14, 24.98s/it] 92%|█████████▏| 434/472 [3:15:48<15:35, 24.62s/it] 92%|█████████▏| 435/472 [3:16:13<15:09, 24.59s/it] 92%|█████████▏| 436/472 [3:16:38<14:51, 24.77s/it] 93%|█████████▎| 437/472 [3:17:03<14:26, 24.77s/it] 93%|█████████▎| 438/472 [3:17:25<13:39, 24.11s/it] 93%|█████████▎| 439/472 [3:17:49<13:13, 24.06s/it] 93%|█████████▎| 440/472 [3:18:13<12:50, 24.09s/it]                                                   {'loss': 0.5669, 'grad_norm': 4.16822899494883, 'learning_rate': 3.495762711864406e-08, 'rewards/chosen': -1.335107445716858, 'rewards/rejected': -3.277539014816284, 'rewards/accuracies': 0.8226562738418579, 'rewards/margins': 1.9436523914337158, 'logps/chosen': -343.29998779296875, 'logps/rejected': -345.375, 'logits/chosen': -1.7643554210662842, 'logits/rejected': -1.7257812023162842, 'losses/dpo_loss': 0.36903077363967896, 'values/chosen': -0.1495531052350998, 'values/rejected': -1.9460937976837158, 'values/accuracies': 0.8140624761581421, 'values/margins': 1.7965819835662842, 'losses/value_loss': 0.3953491151332855, 'epoch': 0.93, 'num_input_tokens_seen': 0, 'train_runtime': 11899.5706, 'train_tokens_per_second': 0.0}
+ 93%|█████████▎| 440/472 [3:18:13<12:50, 24.09s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.49it/s][A
+  8%|▊         | 3/39 [00:02<00:31,  1.13it/s][A
+ 10%|█         | 4/39 [00:03<00:35,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.13s/it][A
+ 15%|█▌        | 6/39 [00:06<00:39,  1.21s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.25s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.23s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.25s/it][A
+ 26%|██▌       | 10/39 [00:11<00:35,  1.24s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.27s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.28s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:21<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:25<00:24,  1.34s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.30s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.23s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.27s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.23s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:11,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:37<00:09,  1.23s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.18s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.16s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.13s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.13s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.20s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.13s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.15s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A                                                   
+                                               [A{'eval_loss': 0.5754759311676025, 'eval_runtime': 48.5303, 'eval_samples_per_second': 12.549, 'eval_steps_per_second': 0.804, 'eval_rewards/chosen': -1.4146634340286255, 'eval_rewards/rejected': -3.3032853603363037, 'eval_rewards/accuracies': 0.7932692170143127, 'eval_rewards/margins': 1.8908252716064453, 'eval_logps/chosen': -338.5641174316406, 'eval_logps/rejected': -331.6538391113281, 'eval_logits/chosen': -1.7381811141967773, 'eval_logits/rejected': -1.7081329822540283, 'eval_losses/dpo_loss': 0.3916391134262085, 'eval_values/chosen': -0.19341571629047394, 'eval_values/rejected': -1.9303885698318481, 'eval_values/accuracies': 0.7676281929016113, 'eval_values/margins': 1.7370918989181519, 'eval_losses/value_loss': 0.46416765451431274, 'epoch': 0.93, 'num_input_tokens_seen': 0}
+ 93%|█████████▎| 440/472 [3:19:02<12:50, 24.09s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.21s/it][A
+                                               [A 93%|█████████▎| 441/472 [3:19:27<20:06, 38.92s/it] 94%|█████████▎| 442/472 [3:19:52<17:26, 34.88s/it] 94%|█████████▍| 443/472 [3:20:18<15:28, 32.03s/it] 94%|█████████▍| 444/472 [3:20:43<14:02, 30.10s/it] 94%|█████████▍| 445/472 [3:21:07<12:40, 28.16s/it] 94%|█████████▍| 446/472 [3:21:33<11:55, 27.50s/it] 95%|█████████▍| 447/472 [3:21:58<11:07, 26.71s/it] 95%|█████████▍| 448/472 [3:22:23<10:27, 26.13s/it] 95%|█████████▌| 449/472 [3:22:45<09:37, 25.10s/it] 95%|█████████▌| 450/472 [3:23:10<09:10, 25.00s/it]                                                   {'loss': 0.6023, 'grad_norm': 4.470066814833226, 'learning_rate': 2.4364406779661018e-08, 'rewards/chosen': -1.296972632408142, 'rewards/rejected': -3.1675782203674316, 'rewards/accuracies': 0.8031250238418579, 'rewards/margins': 1.868798851966858, 'logps/chosen': -352.4624938964844, 'logps/rejected': -350.7875061035156, 'logits/chosen': -1.7414062023162842, 'logits/rejected': -1.753515601158142, 'losses/dpo_loss': 0.3865112364292145, 'values/chosen': -0.19126053154468536, 'values/rejected': -1.8960449695587158, 'values/accuracies': 0.792187511920929, 'values/margins': 1.70458984375, 'losses/value_loss': 0.43168944120407104, 'epoch': 0.95, 'num_input_tokens_seen': 0, 'train_runtime': 12196.2363, 'train_tokens_per_second': 0.0}
+ 95%|█████████▌| 450/472 [3:23:10<09:10, 25.00s/it] 96%|█████████▌| 451/472 [3:23:33<08:33, 24.45s/it] 96%|█████████▌| 452/472 [3:23:57<08:02, 24.13s/it] 96%|█████████▌| 453/472 [3:24:22<07:45, 24.50s/it] 96%|█████████▌| 454/472 [3:24:47<07:21, 24.55s/it] 96%|█████████▋| 455/472 [3:25:12<07:00, 24.75s/it] 97%|█████████▋| 456/472 [3:25:37<06:37, 24.85s/it] 97%|█████████▋| 457/472 [3:26:01<06:09, 24.61s/it] 97%|█████████▋| 458/472 [3:26:26<05:48, 24.89s/it] 97%|█████████▋| 459/472 [3:26:53<05:28, 25.27s/it] 97%|█████████▋| 460/472 [3:27:18<05:04, 25.36s/it]                                                   {'loss': 0.5894, 'grad_norm': 5.511410099193154, 'learning_rate': 1.3771186440677964e-08, 'rewards/chosen': -1.2633056640625, 'rewards/rejected': -3.2080078125, 'rewards/accuracies': 0.821093738079071, 'rewards/margins': 1.945336937904358, 'logps/chosen': -352.01251220703125, 'logps/rejected': -350.63751220703125, 'logits/chosen': -1.776464819908142, 'logits/rejected': -1.7116210460662842, 'losses/dpo_loss': 0.37327879667282104, 'values/chosen': -0.15345916152000427, 'values/rejected': -1.8617675304412842, 'values/accuracies': 0.801562488079071, 'values/margins': 1.708105444908142, 'losses/value_loss': 0.43243408203125, 'epoch': 0.98, 'num_input_tokens_seen': 0, 'train_runtime': 12444.4142, 'train_tokens_per_second': 0.0}
+ 97%|█████████▋| 460/472 [3:27:18<05:04, 25.36s/it]
+  0%|          | 0/39 [00:00<?, ?it/s][A
+  5%|▌         | 2/39 [00:01<00:24,  1.48it/s][A
+  8%|▊         | 3/39 [00:02<00:32,  1.12it/s][A
+ 10%|█         | 4/39 [00:03<00:36,  1.03s/it][A
+ 13%|█▎        | 5/39 [00:05<00:38,  1.14s/it][A
+ 15%|█▌        | 6/39 [00:06<00:40,  1.22s/it][A
+ 18%|█▊        | 7/39 [00:07<00:40,  1.26s/it][A
+ 21%|██        | 8/39 [00:09<00:38,  1.24s/it][A
+ 23%|██▎       | 9/39 [00:10<00:37,  1.26s/it][A
+ 26%|██▌       | 10/39 [00:11<00:36,  1.25s/it][A
+ 28%|██▊       | 11/39 [00:12<00:35,  1.28s/it][A
+ 31%|███       | 12/39 [00:14<00:34,  1.27s/it][A
+ 33%|███▎      | 13/39 [00:15<00:33,  1.28s/it][A
+ 36%|███▌      | 14/39 [00:16<00:30,  1.23s/it][A
+ 38%|███▊      | 15/39 [00:17<00:30,  1.26s/it][A
+ 41%|████      | 16/39 [00:19<00:29,  1.28s/it][A
+ 44%|████▎     | 17/39 [00:20<00:28,  1.31s/it][A
+ 46%|████▌     | 18/39 [00:22<00:27,  1.32s/it][A
+ 49%|████▊     | 19/39 [00:23<00:26,  1.33s/it][A
+ 51%|█████▏    | 20/39 [00:24<00:25,  1.34s/it][A
+ 54%|█████▍    | 21/39 [00:26<00:24,  1.34s/it][A
+ 56%|█████▋    | 22/39 [00:27<00:21,  1.27s/it][A
+ 59%|█████▉    | 23/39 [00:28<00:20,  1.29s/it][A
+ 62%|██████▏   | 24/39 [00:29<00:18,  1.23s/it][A
+ 64%|██████▍   | 25/39 [00:30<00:17,  1.23s/it][A
+ 67%|██████▋   | 26/39 [00:32<00:16,  1.26s/it][A
+ 69%|██████▉   | 27/39 [00:33<00:14,  1.21s/it][A
+ 72%|███████▏  | 28/39 [00:34<00:13,  1.22s/it][A
+ 74%|███████▍  | 29/39 [00:35<00:10,  1.10s/it][A
+ 77%|███████▋  | 30/39 [00:36<00:10,  1.17s/it][A
+ 79%|███████▉  | 31/39 [00:37<00:09,  1.22s/it][A
+ 82%|████████▏ | 32/39 [00:39<00:08,  1.17s/it][A
+ 85%|████████▍ | 33/39 [00:40<00:06,  1.15s/it][A
+ 87%|████████▋ | 34/39 [00:41<00:05,  1.12s/it][A
+ 90%|████████▉ | 35/39 [00:42<00:04,  1.12s/it][A
+ 92%|█████████▏| 36/39 [00:43<00:03,  1.19s/it][A
+ 95%|█████████▍| 37/39 [00:44<00:02,  1.12s/it][A
+ 97%|█████████▋| 38/39 [00:45<00:01,  1.14s/it][A
+100%|██████████| 39/39 [00:47<00:00,  1.19s/it][A                                                   
+                                               [A{'eval_loss': 0.573391318321228, 'eval_runtime': 48.464, 'eval_samples_per_second': 12.566, 'eval_steps_per_second': 0.805, 'eval_rewards/chosen': -1.3367388248443604, 'eval_rewards/rejected': -3.2231571674346924, 'eval_rewards/accuracies': 0.7932692170143127, 'eval_rewards/margins': 1.8880208730697632, 'eval_logps/chosen': -337.974365234375, 'eval_logps/rejected': -331.0897521972656, 'eval_logits/chosen': -1.7287660837173462, 'eval_logits/rejected': -1.6991186141967773, 'eval_losses/dpo_loss': 0.39325422048568726, 'eval_values/chosen': -0.23963028192520142, 'eval_values/rejected': -1.9555288553237915, 'eval_values/accuracies': 0.7644230723381042, 'eval_values/margins': 1.7152193784713745, 'eval_losses/value_loss': 0.4623146951198578, 'epoch': 0.98, 'num_input_tokens_seen': 0}
+ 97%|█████████▋| 460/472 [3:28:07<05:04, 25.36s/it]
+100%|██████████| 39/39 [00:47<00:00,  1.19s/it][A
+                                               [A 98%|█████████▊| 461/472 [3:28:32<07:18, 39.88s/it] 98%|█████████▊| 462/472 [3:28:57<05:55, 35.55s/it] 98%|█████████▊| 463/472 [3:29:23<04:51, 32.43s/it] 98%|█████████▊| 464/472 [3:29:48<04:01, 30.24s/it] 99%|█████████▊| 465/472 [3:30:12<03:19, 28.51s/it] 99%|█████████▊| 466/472 [3:30:37<02:44, 27.48s/it] 99%|█████████▉| 467/472 [3:31:02<02:12, 26.52s/it] 99%|█████████▉| 468/472 [3:31:26<01:43, 25.90s/it] 99%|█████████▉| 469/472 [3:31:49<01:14, 24.92s/it]100%|█████████▉| 470/472 [3:32:13<00:49, 24.69s/it]                                                   {'loss': 0.5426, 'grad_norm': 4.115650518357001, 'learning_rate': 3.1779661016949153e-09, 'rewards/chosen': -1.24072265625, 'rewards/rejected': -3.239453077316284, 'rewards/accuracies': 0.813281238079071, 'rewards/margins': 1.998144507408142, 'logps/chosen': -349.04998779296875, 'logps/rejected': -343.32501220703125, 'logits/chosen': -1.786523461341858, 'logits/rejected': -1.7545897960662842, 'losses/dpo_loss': 0.3531127870082855, 'values/chosen': -0.09056548774242401, 'values/rejected': -1.9807617664337158, 'values/accuracies': 0.8140624761581421, 'values/margins': 1.8901855945587158, 'losses/value_loss': 0.37904053926467896, 'epoch': 1.0, 'num_input_tokens_seen': 0, 'train_runtime': 12738.9894, 'train_tokens_per_second': 0.0}
+100%|█████████▉| 470/472 [3:32:13<00:49, 24.69s/it]100%|█████████▉| 471/472 [3:32:38<00:24, 24.93s/it]100%|██████████| 472/472 [3:32:45<00:00, 19.45s/it]                                                   {'train_runtime': 12807.4894, 'train_samples_per_second': 4.709, 'train_steps_per_second': 0.037, 'train_loss': 0.628204798294326, 'epoch': 1.0, 'num_input_tokens_seen': 0}
+100%|██████████| 472/472 [3:33:21<00:00, 19.45s/it]100%|██████████| 472/472 [3:33:21<00:00, 27.12s/it]
+✅ Training completed.
+  0%|          | 0/39 [00:00<?, ?it/s]  5%|▌         | 2/39 [00:01<00:24,  1.52it/s]  8%|▊         | 3/39 [00:02<00:31,  1.15it/s] 10%|█         | 4/39 [00:03<00:35,  1.01s/it] 13%|█▎        | 5/39 [00:05<00:37,  1.11s/it] 15%|█▌        | 6/39 [00:06<00:39,  1.19s/it] 18%|█▊        | 7/39 [00:07<00:39,  1.24s/it] 21%|██        | 8/39 [00:08<00:37,  1.21s/it] 23%|██▎       | 9/39 [00:10<00:36,  1.23s/it] 26%|██▌       | 10/39 [00:11<00:35,  1.23s/it] 28%|██▊       | 11/39 [00:12<00:35,  1.26s/it] 31%|███       | 12/39 [00:13<00:33,  1.25s/it] 33%|███▎      | 13/39 [00:15<00:32,  1.26s/it] 36%|███▌      | 14/39 [00:16<00:30,  1.21s/it] 38%|███▊      | 15/39 [00:17<00:29,  1.24s/it] 41%|████      | 16/39 [00:18<00:29,  1.27s/it] 44%|████▎     | 17/39 [00:20<00:28,  1.29s/it] 46%|████▌     | 18/39 [00:21<00:27,  1.31s/it] 49%|████▊     | 19/39 [00:22<00:26,  1.32s/it] 51%|█████▏    | 20/39 [00:24<00:25,  1.32s/it] 54%|█████▍    | 21/39 [00:25<00:23,  1.33s/it] 56%|█████▋    | 22/39 [00:26<00:21,  1.26s/it] 59%|█████▉    | 23/39 [00:28<00:20,  1.29s/it] 62%|██████▏   | 24/39 [00:29<00:18,  1.22s/it] 64%|██████▍   | 25/39 [00:30<00:17,  1.22s/it] 67%|██████▋   | 26/39 [00:31<00:16,  1.26s/it] 69%|██████▉   | 27/39 [00:32<00:14,  1.20s/it] 72%|███████▏  | 28/39 [00:34<00:13,  1.22s/it] 74%|███████▍  | 29/39 [00:34<00:10,  1.09s/it] 77%|███████▋  | 30/39 [00:36<00:10,  1.16s/it] 79%|███████▉  | 31/39 [00:37<00:09,  1.22s/it] 82%|████████▏ | 32/39 [00:38<00:08,  1.17s/it] 85%|████████▍ | 33/39 [00:39<00:06,  1.14s/it] 87%|████████▋ | 34/39 [00:40<00:05,  1.12s/it] 90%|████████▉ | 35/39 [00:41<00:04,  1.12s/it] 92%|█████████▏| 36/39 [00:43<00:03,  1.18s/it] 95%|█████████▍| 37/39 [00:44<00:02,  1.12s/it] 97%|█████████▋| 38/39 [00:45<00:01,  1.14s/it]100%|██████████| 39/39 [00:46<00:00,  1.19s/it]100%|██████████| 39/39 [00:46<00:00,  1.20s/it]
+***** eval metrics *****
+  epoch                   =        1.0
+  eval_logits/chosen      =    -1.7296
+  eval_logits/rejected    =    -1.7011
+  eval_logps/chosen       =  -338.7692
+  eval_logps/rejected     =   -331.782
+  eval_loss               =     0.5699
+  eval_losses/dpo_loss    =     0.3908
+  eval_losses/value_loss  =     0.4636
+  eval_rewards/accuracies =     0.7885
+  eval_rewards/chosen     =    -1.4317
+  eval_rewards/margins    =     1.8991
+  eval_rewards/rejected   =    -3.3309
+  eval_runtime            = 0:00:48.03
+  eval_samples_per_second =     12.678
+  eval_steps_per_second   =      0.812
+  eval_values/accuracies  =     0.7628
+  eval_values/chosen      =    -0.1391
+  eval_values/margins     =     1.7202
+  eval_values/rejected    =    -1.8587
+  num_input_tokens_seen   =          0
+💾 Model saved to checkpoints/Qwen2.5-3B-Instruct-CODPO-no-warmup.
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mplayful-water-277[0m at: [34m[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20260109_014248-qw45iv30/logs[0m

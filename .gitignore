@@ -13,6 +13,9 @@ debug/
 data/
 trl/accelerate_configs/
 results/
+checkpoints/
+outputs/
+datasets/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

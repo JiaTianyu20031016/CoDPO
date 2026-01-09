@@ -1,0 +1,14 @@
+CUDA_VISIBLE_DEVICES=2,3 accelerate launch --config_file trl/accelerate_configs/zero3.yaml scripts/run_dpo.py \
+    --dataset_name trl-lib/ultrafeedback_binarized \
+    --model_name_or_path /data2/jty/models/Meta-Llama-3.1-8B-Instruct \
+    --learning_rate 5.0e-7 \
+    --num_train_epochs 10 \
+    --per_device_train_batch_size 3 \
+    --gradient_accumulation_steps 8 \
+    --gradient_checkpointing \
+    --eval_strategy steps \
+    --eval_steps 50 \
+    --save_strategy epoch \
+    --output_dir Meta-Llama-3.1-8B-Instruct-DPO \
+    --no_remove_unused_columns \
+    --precompute_ref_log_probs

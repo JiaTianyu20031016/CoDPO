@@ -1,0 +1,1 @@
+python scripts/on_policy_data_gen/annotate.py --generation_file trl-lib/ultrafeedback_binarized --split test --reward_model checkpoints/Qwen2.5-3B-Instruct-DPO --ref_model /data2/jty/models/Qwen2.5-3B-Instruct --reward_mode dpo --batch_size "8" --output_dir results/Qwen2.5-3B-Instruct-DPO
