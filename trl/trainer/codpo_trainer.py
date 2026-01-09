@@ -471,6 +471,8 @@ class CoDPOTrainer(BaseTrainer):
         self.use_weighting = args.use_weighting
         self.aux_loss_coef = getattr(model.config, "router_aux_loss_coef", 0.0)
         self.value_loss_coef = args.value_loss_coef
+        self.dpo_loss_coef = args.dpo_loss_coef
+
         if self.aux_loss_enabled and self.aux_loss_coef == 0.0:
             logger.warning(
                 "You set `output_router_logits` to `True` in the model config, but `router_aux_loss_coef` is set to "
@@ -1776,9 +1778,12 @@ class CoDPOTrainer(BaseTrainer):
             if value_tensor.dim() == 3 and value_tensor.size(-1) == 1:
                 value_tensor = value_tensor.squeeze(-1)
 
-            mask = loss_mask
+            mask = torch.roll(loss_mask, shifts=1, dims=1)
             has_token = mask.any(dim=1)
-            last_indices = torch.clamp(mask.int().sum(dim=1) - 1, min=0)
+
+            # pick the last valid response token index
+            arange_idx = torch.arange(mask.size(1), device=mask.device).unsqueeze(0).expand_as(mask)
+            last_indices = (mask * arange_idx).max(dim=1).values
             batch_idx = torch.arange(value_tensor.size(0), device=value_tensor.device)
             last_values = value_tensor[batch_idx, last_indices]
             last_values = torch.where(has_token, last_values, torch.zeros_like(last_values))
@@ -1845,13 +1850,15 @@ class CoDPOTrainer(BaseTrainer):
                 chosen_rewards = chosen_rewards + _chosen_rewards * weight
                 rejected_rewards = rejected_rewards + _rejected_rewards * weight
 
+            dpo_loss_for_metrics = losses
             chosen_values = model_output.get("chosen_values", None)
             rejected_values = model_output.get("rejected_values", None)
             if chosen_values is not None and rejected_values is not None:
-                value_accuracies = (chosen_values > rejected_values).float()
-                losses = losses + self.value_loss_coef * self.value_loss(
+                value_loss_for_metrics = self.value_loss(
                     chosen_values, rejected_values
                 )
+                value_accuracies = (chosen_values > rejected_values).float()
+                losses = self.dpo_loss_coef * losses + self.value_loss_coef * value_loss_for_metrics
         
         reward_accuracies = (chosen_rewards > rejected_rewards).float()
 
@@ -1871,13 +1878,6 @@ class CoDPOTrainer(BaseTrainer):
         metrics[f"{prefix}rewards/margins"] = (
             self.accelerator.gather_for_metrics(chosen_rewards - rejected_rewards).mean().item()
         )
-        if chosen_values is not None and rejected_values is not None:
-            metrics[f"{prefix}values/chosen"] = self.accelerator.gather_for_metrics(chosen_values).mean().item()
-            metrics[f"{prefix}values/rejected"] = self.accelerator.gather_for_metrics(rejected_values).mean().item()
-            metrics[f"{prefix}values/accuracies"] = self.accelerator.gather_for_metrics(value_accuracies).mean().item()
-            metrics[f"{prefix}values/margins"] = (
-                self.accelerator.gather_for_metrics(chosen_values - rejected_values).mean().item()
-            )
         metrics[f"{prefix}logps/chosen"] = (
             self.accelerator.gather_for_metrics(model_output["chosen_logps"]).detach().mean().item()
         )
@@ -1899,6 +1899,17 @@ class CoDPOTrainer(BaseTrainer):
                 self.accelerator.gather_for_metrics(model_output["aux_loss"]).detach().mean().item()
             )
 
+        # note: chosen_rewards and rejected_rewards are already detached in dpo_loss. So no need to detach again.
+        # however, chosen_values, rejected_values, value_loss_for_metrics and dpo_loss_for_metrics are not detached yet.
+        metrics[f"{prefix}losses/dpo_loss"] = self.accelerator.gather_for_metrics(dpo_loss_for_metrics).detach().mean().item()
+        if chosen_values is not None and rejected_values is not None:
+            metrics[f"{prefix}values/chosen"] = self.accelerator.gather_for_metrics(chosen_values).detach().mean().item()
+            metrics[f"{prefix}values/rejected"] = self.accelerator.gather_for_metrics(rejected_values).detach().mean().item()
+            metrics[f"{prefix}values/accuracies"] = self.accelerator.gather_for_metrics(value_accuracies).detach().mean().item()
+            metrics[f"{prefix}values/margins"] = (
+                self.accelerator.gather_for_metrics(chosen_values - rejected_values).detach().mean().item()
+            )
+            metrics[f"{prefix}losses/value_loss"] = self.accelerator.gather_for_metrics(value_loss_for_metrics).detach().mean().item()
         return losses.mean(), metrics
 
     def compute_loss(

@@ -11,6 +11,8 @@ tmp*
 tags
 debug/
 data/
+trl/accelerate_configs/
+results/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

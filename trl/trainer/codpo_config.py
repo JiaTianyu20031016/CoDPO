@@ -514,6 +514,10 @@ class CoDPOConfig(TrainingArguments):
         default=0.0,
         metadata={"help": "Coefficient for the value function loss."},
     )
+    dpo_loss_coef: float = field(
+        default=1.0,
+        metadata={"help": "Coefficient for the dpo loss."},
+    )
 
     def __post_init__(self):
         self.bf16 = not (self.fp16) if self.bf16 is None else self.bf16

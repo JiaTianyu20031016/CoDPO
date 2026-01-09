@@ -453,14 +453,30 @@ def get_dataset(mixture_config: DatasetMixtureConfig) -> DatasetDict:
     datasets_list = []
     for dataset_config in mixture_config.datasets:
         logger.info(f"Loading dataset for mixture: {dataset_config.path} (config name: {dataset_config.name})")
-        dataset = datasets.load_dataset(
-            path=dataset_config.path,
-            name=dataset_config.name,
-            data_dir=dataset_config.data_dir,
-            data_files=dataset_config.data_files,
-            split=dataset_config.split,
-            streaming=mixture_config.streaming,
-        )
+        try:
+            dataset = datasets.load_dataset(
+                path=dataset_config.path,
+                name=dataset_config.name,
+                data_dir=dataset_config.data_dir,
+                data_files=dataset_config.data_files,
+                split=dataset_config.split,
+                streaming=mixture_config.streaming,
+            )
+        except:
+            if mixture_config.streaming:
+                raise ValueError("Streaming is not supported when loading datasets from disk.")
+
+            loaded_dataset = datasets.load_from_disk(dataset_config.path)
+            if isinstance(loaded_dataset, DatasetDict):
+                target_split = dataset_config.split or "train"
+                if target_split not in loaded_dataset:
+                    raise ValueError(
+                        f"Split '{target_split}' not found in dataset loaded from disk at {dataset_config.path}."
+                    )
+                dataset = loaded_dataset[target_split]
+            else:
+                dataset = loaded_dataset
+
         if dataset_config.columns is not None:
             dataset = dataset.select_columns(dataset_config.columns)
         datasets_list.append(dataset)
